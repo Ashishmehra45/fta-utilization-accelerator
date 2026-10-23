@@ -207,6 +207,7 @@ export default function FTAAcceleratorPage() {
             {/* Soft gradient overlay at the bottom of the image for premium look */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
           </div>
+          
         </ScrollReveal>
         
       </section>
