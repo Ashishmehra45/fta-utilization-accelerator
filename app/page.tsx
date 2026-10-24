@@ -166,12 +166,12 @@ export default function FTAAcceleratorPage() {
         {/* LEFT CONTENT (Text Side) */}
         <ScrollReveal direction="up" className="flex flex-col items-start text-left z-10 w-full lg:w-1/2">
           <div className="bg-white border border-gray-200 rounded-full px-4 py-1.5 mb-8 shadow-sm flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full " />
+            
             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Flagship Program</span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl xl:text-[5rem] font-medium tracking-tight text-[#111827] leading-[1.05] mb-6">
-            FTA Accelerator<span className="font-black"> program</span>
+          <h1 className="text-5xl md:text-6xl xl:text-[4.5rem] font-bold tracking-tight text-[#111827] leading-[1.05] mb-6">
+            FTA Accelerator Program
           </h1>
 
           <p className="text-xl md:text-2xl font-bold text-gray-800 mb-6">
@@ -403,37 +403,37 @@ export default function FTAAcceleratorPage() {
               {
                 num: "01", time: "Weeks 1–3", title: "Trade Assessment & Opportunity Mapping",
                 content: [
-                  { t: "FTA Opportunity Report:", d: "Analysis of relevant trade agreements, target markets, product categories, and potential preferential trade benefits." },
-                  { t: "Product & HS Code Assessment:", d: "Review of product classifications, applicable tariff lines, and relevant country-specific tariff requirements." },
-                  { t: "Tariff Optimization Analysis:", d: "Comparison of standard and preferential tariff rates wherever verified data is available, with an assessment of potential duty savings." },
-                  { t: "Market Prioritization Framework:", d: "Identification of priority markets based on trade potential, tariff advantages, regulatory requirements, and market access conditions." }
+                  { t: "FTA Opportunity Report", d: "Analysis of relevant trade agreements, target markets, product categories, and potential preferential trade benefits." },
+                  { t: "Product & HS Code Assessment", d: "Review of product classifications, applicable tariff lines, and relevant country-specific tariff requirements." },
+                  { t: "Tariff Optimization Analysis", d: "Comparison of standard and preferential tariff rates wherever verified data is available, with an assessment of potential duty savings." },
+                  { t: "Market Prioritization Framework", d: "Identification of priority markets based on trade potential, tariff advantages, regulatory requirements, and market access conditions." }
                 ]
               },
               {
                 num: "02", time: "Weeks 4–6", title: "Eligibility & Compliance Planning",
                 content: [
-                  { t: "Rules of Origin Assessment:", d: "Preliminary assessment of product origin requirements, qualifying conditions, and agreement-specific eligibility criteria." },
-                  { t: "Documentation Roadmap:", d: "Checklist of applicable Certificates of Origin, customs documents, and supporting records." },
-                  { t: "Trade Compliance Advisory:", d: "Guidance on relevant customs procedures, product requirements, and documentation processes." },
-                  { t: "Sector-Specific Readiness Assessment:", d: "Evaluation of product information, supplier documentation, pricing, and sector-relevant export-import requirements." }
+                  { t: "Rules of Origin Assessment", d: "Preliminary assessment of product origin requirements, qualifying conditions, and agreement-specific eligibility criteria." },
+                  { t: "Documentation Roadmap", d: "Checklist of applicable Certificates of Origin, customs documents, and supporting records." },
+                  { t: "Trade Compliance Advisory", d: "Guidance on relevant customs procedures, product requirements, and documentation processes." },
+                  { t: "Sector-Specific Readiness Assessment", d: "Evaluation of product information, supplier documentation, pricing, and sector-relevant export-import requirements." }
                 ]
               },
               {
                 num: "03", time: "Weeks 7–10", title: "Trade Facilitation & Partner Engagement",
                 content: [
-                  { t: "Trade Partner Identification:", d: "Identification of relevant importers, exporters, distributors, and potential business partners in priority markets." },
-                  { t: "B2B Introductions:", d: "Facilitated business meetings and trade engagement opportunities, subject to partner availability." },
-                  { t: "Commercial Strategy Support:", d: "Guidance on pricing, landed-cost considerations, market positioning, and trade negotiation preparation." },
-                  { t: "Documentation Coordination:", d: "Support in preparing trade documentation and coordinating with relevant authorized agencies and service providers." }
+                  { t: "Trade Partner Identification", d: "Identification of relevant importers, exporters, distributors, and potential business partners in priority markets." },
+                  { t: "B2B Introductions", d: "Facilitated business meetings and trade engagement opportunities, subject to partner availability." },
+                  { t: "Commercial Strategy Support", d: "Guidance on pricing, landed-cost considerations, market positioning, and trade negotiation preparation." },
+                  { t: "Documentation Coordination", d: "Support in preparing trade documentation and coordinating with relevant authorized agencies and service providers." }
                 ]
               },
               {
                 num: "04", time: "Weeks 11–12", title: "Implementation & Expansion Planning",
                 content: [
-                  { t: "FTA Action Plan:", d: "A practical roadmap for claiming applicable preferential tariff benefits, subject to product eligibility and customs requirements." },
-                  { t: "Trade Opportunity Report:", d: "Consolidated analysis of identified markets, tariff opportunities, compliance requirements, and recommended next steps." },
-                  { t: "Market Activation Support:", d: "Guidance for initiating priority trade engagements and progressing qualified business opportunities." },
-                  { t: "Post-Program Advisory:", d: "Follow-up guidance for improvement, partner engagement, and future market expansion planning." }
+                  { t: "FTA Action Plan", d: "A practical roadmap for claiming applicable preferential tariff benefits, subject to product eligibility and customs requirements." },
+                  { t: "Trade Opportunity Report", d: "Consolidated analysis of identified markets, tariff opportunities, compliance requirements, and recommended next steps." },
+                  { t: "Market Activation Support", d: "Guidance for initiating priority trade engagements and progressing qualified business opportunities." },
+                  { t: "Post-Program Advisory", d: "Follow-up guidance for improvement, partner engagement, and future market expansion planning." }
                 ]
               }
             ].map((phase, idx) => (
