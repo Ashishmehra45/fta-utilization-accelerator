@@ -144,6 +144,7 @@ export default function FTAAcceleratorPage() {
         
         {/* Background Image with Dark Overlay[cite: 3] */}
         <div className="absolute inset-0 z-0">
+          
           <img 
             src="/back.png" 
             alt="Madhya Pradesh Industry Background" 
