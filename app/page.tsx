@@ -139,12 +139,11 @@ export default function FTAAcceleratorPage() {
         )}
       </AnimatePresence>
 
-      {/* HERO SECTION - MPIDC Theme Exact Match */}
+     {/* HERO SECTION - MPIDC Theme Exact Match */}
       <section className="relative min-h-[90vh] flex flex-col justify-between overflow-hidden bg-[#0A192F]">
         
-        {/* Background Image with Dark Overlay[cite: 3] */}
+        {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
-          
           <img 
             src="/back.png" 
             alt="Madhya Pradesh Industry Background" 
@@ -153,87 +152,90 @@ export default function FTAAcceleratorPage() {
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        {/* Main Content Area (Centered Text + Right Leaders)[cite: 3] */}
-        <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-6 pt-32 pb-20 flex flex-col lg:flex-row items-center justify-center lg:justify-between flex-grow">
+        {/* Main Content Area (Centered Text + Leaders) */}
+        <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-16 md:pb-20 flex flex-col lg:flex-row items-center justify-center lg:justify-between flex-grow">
           
-          {/* Centered Main Text[cite: 3] */}
-          <div className="flex flex-col items-center text-center w-full lg:w-2/3 lg:absolute lg:left-1/2 lg:-translate-x-1/2 mt-10 lg:mt-0">
-            <ScrollReveal direction="up">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-2 tracking-tight">
+          {/* Centered Main Text */}
+          <div className="flex flex-col items-center text-center w-full lg:w-2/3 lg:absolute lg:left-1/2 lg:-translate-x-1/2 mt-4 md:mt-0 order-2 lg:order-1">
+            <ScrollReveal direction="up" className="flex flex-col items-center">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-2 md:mb-4 tracking-tight">
                 FTA Accelerator Program
               </h1>
-              <p className="text-xl md:text-2xl font-light text-white mb-10">
+              <p className="text-lg sm:text-xl md:text-2xl font-light text-white mb-6 md:mb-10 px-2">
                Unlock Preferential Trade Benefits. Accelerate Your Global Market Access.
               </p>
 
-               <p className="text-xl md:text-lg w-[55vw] font-light text-white mb-8">
+               <p className="text-sm sm:text-base md:text-lg w-full sm:w-[85vw] lg:w-[55vw] font-light text-white mb-8 px-4 leading-relaxed hidden md:block">
                Institutional-grade support for exporters, importers, and businesses across Pharmaceuticals, Agriculture, Textiles, and Engineering & Automobile to identify Free Trade Agreement (FTA) opportunities, optimize customs duties, navigate Rules of Origin, and strengthen cross-border trade.
+              </p>
+              <p className="text-sm sm:text-base md:text-lg w-full sm:w-[85vw] lg:w-[55vw] font-light text-white/90 mb-8 px-4 leading-relaxed md:hidden">
+               Institutional-grade support for exporters & importers across key sectors to identify FTA opportunities, optimize customs duties, and strengthen cross-border trade.
               </p>
               
               
-              {/* Blue CTA Button[cite: 3] */}
+              {/* Blue CTA Button */}
               <a 
                 href="#contact" 
-                className="inline-block bg-transparent border-2 border-[#004B87] hover:bg-[#004B87] text-white px-10 py-4 rounded-full text-lg md:text-xl font-medium transition-all backdrop-blur-sm"
+                className="inline-block bg-[#004B87]/80 md:bg-transparent border-2 border-[#004B87] hover:bg-[#004B87] text-white px-6 sm:px-8 md:px-10 py-3 md:py-4 rounded-full text-base sm:text-lg md:text-xl font-medium transition-all backdrop-blur-sm w-[90%] sm:w-auto"
               >
                 Start your Investment Journey with MP
               </a>
 
-              <div className="mt-8 text-white/90 text-lg md:text-xl font-light tracking-wide flex items-center justify-center gap-3 divide-x divide-white/40">
-                <span className="pr-3">Robust Policies</span>
-                <span className="px-3">Seamless Processes</span>
-                <span className="pl-3">Sustainable Growth</span>
+              <div className="mt-8 text-white/90 text-sm sm:text-base md:text-xl font-light tracking-wide flex items-center justify-center gap-2 sm:gap-3 divide-x divide-white/40 px-2">
+                <span className="pr-2 sm:pr-3 whitespace-nowrap">Robust Policies</span>
+                <span className="px-2 sm:px-3 whitespace-nowrap">Seamless Processes</span>
+                <span className="pl-2 sm:pl-3 whitespace-nowrap hidden sm:inline">Sustainable Growth</span>
               </div>
             </ScrollReveal>
           </div>
 
-          {/* Leaders Area (Right Side)[cite: 3] */}
-          <div className="hidden lg:flex flex-row items-end gap-6 ml-auto mt-20 lg:mt-0 z-20">
-            <ScrollReveal delay={0.2} direction="left" className="flex flex-col items-center">
-              <div className="w-40 h-40 border-b-4 border-transparent overflow-hidden">
+          {/* Leaders Area (Right Side - Desktop & Mobile Friendly) */}
+          <div className="flex flex-row items-end justify-center lg:justify-end gap-4 sm:gap-6 w-full lg:w-auto lg:ml-auto mb-8 lg:mb-0 z-20 order-1 lg:order-2">
+            <ScrollReveal delay={0.2} direction="up" className="flex flex-col items-center">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 border-b-2 md:border-b-4 border-transparent overflow-hidden">
                 <img 
                   src="/modi_ji-removebg-preview.png" 
                   alt="Narendra Modi" 
                   className="w-full h-full object-cover object-top mask-image-bottom-fade"
                 />
               </div>
-              <div className="bg-[#004B87]/90 backdrop-blur-sm w-[120%] text-center py-2 mt-[-10px] z-10 border-t border-white/20">
-                <h4 className="font-bold text-white text-sm">Narendra Modi</h4>
-                <p className="text-[9px] text-white/80">Hon'ble Prime Minister, India</p>
+              <div className="bg-[#004B87]/90 backdrop-blur-sm w-[110%] md:w-[120%] text-center py-1.5 md:py-2 mt-[-10px] z-10 border-t border-white/20 rounded-sm">
+                <h4 className="font-bold text-white text-[10px] sm:text-xs md:text-sm">Narendra Modi</h4>
+                <p className="text-[7px] sm:text-[8px] md:text-[9px] text-white/80 leading-tight">Hon'ble Prime Minister, India</p>
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.3} direction="left" className="flex flex-col items-center">
-              <div className="w-36 h-36 border-b-4 border-transparent overflow-hidden">
+            <ScrollReveal delay={0.3} direction="up" className="flex flex-col items-center">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 border-b-2 md:border-b-4 border-transparent overflow-hidden">
                 <img 
                   src="/mohan_yadav-removebg-preview.png" 
                   alt="Dr. Mohan Yadav" 
                   className="w-full h-full object-cover object-top mask-image-bottom-fade"
                 />
               </div>
-              <div className="bg-[#004B87]/90 backdrop-blur-sm w-[120%] text-center py-2 mt-[-10px] z-10 border-t border-white/20">
-                <h4 className="font-bold text-white text-sm">Dr. Mohan Yadav</h4>
-                <p className="text-[9px] text-white/80">Hon'ble Chief Minister, MP</p>
+              <div className="bg-[#004B87]/90 backdrop-blur-sm w-[110%] md:w-[120%] text-center py-1.5 md:py-2 mt-[-10px] z-10 border-t border-white/20 rounded-sm">
+                <h4 className="font-bold text-white text-[10px] sm:text-xs md:text-sm">Dr. Mohan Yadav</h4>
+                <p className="text-[7px] sm:text-[8px] md:text-[9px] text-white/80 leading-tight">Hon'ble Chief Minister, MP</p>
               </div>
             </ScrollReveal>
           </div>
         </div>
 
-        {/* Bottom Glassy Action Cards[cite: 3] */}
-        <div className="relative z-20 w-full max-w-screen-2xl mx-auto px-4 pb-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Bottom Glassy Action Cards */}
+        <div className="relative z-20 w-full max-w-screen-2xl mx-auto px-4 pb-6 mt-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
-              { icon: <LineChart className="w-5 h-5 text-white" />, label: "Intention to Invest" },
-              { icon: <FileText className="w-5 h-5 text-white" />, label: "Know Our Policies" },
-              { icon: <Calculator className="w-5 h-5 text-white" />, label: "Calculate Your Incentives" },
-              { icon: <CheckSquare className="w-5 h-5 text-white" />, label: "Know Your Approvals" }
+              { icon: <LineChart className="w-4 h-4 md:w-5 md:h-5 text-white" />, label: "Intention to Invest" },
+              { icon: <FileText className="w-4 h-4 md:w-5 md:h-5 text-white" />, label: "Know Our Policies" },
+              { icon: <Calculator className="w-4 h-4 md:w-5 md:h-5 text-white" />, label: "Calculate Incentives" },
+              { icon: <CheckSquare className="w-4 h-4 md:w-5 md:h-5 text-white" />, label: "Know Approvals" }
             ].map((card, idx) => (
               <ScrollReveal key={idx} delay={0.4 + (idx * 0.1)} direction="up">
-                <a href="#" className="flex items-center gap-4 bg-[#002A54]/70 hover:bg-[#004B87]/90 backdrop-blur-md border border-white/20 rounded-lg p-4 transition-colors group">
-                  <div className="bg-white/10 p-2 rounded-md group-hover:bg-white/20 transition-colors">
+                <a href="#" className="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-2 sm:gap-3 md:gap-4 bg-[#002A54]/80 hover:bg-[#004B87]/90 backdrop-blur-md border border-white/20 rounded-lg p-3 md:p-4 transition-colors group text-center sm:text-left h-full">
+                  <div className="bg-white/10 p-1.5 md:p-2 rounded-md group-hover:bg-white/20 transition-colors shrink-0">
                     {card.icon}
                   </div>
-                  <span className="text-white font-medium text-sm md:text-base">{card.label}</span>
+                  <span className="text-white font-medium text-[10px] sm:text-xs md:text-sm leading-tight">{card.label}</span>
                 </a>
               </ScrollReveal>
             ))}
