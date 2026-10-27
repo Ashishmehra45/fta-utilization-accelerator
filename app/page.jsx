@@ -54,23 +54,50 @@ export default function App() {
           </div>
 
           {/* MAIN CONTENT AREA WITH LEADERS */}
-          <div className="relative z-10 w-full h-full grow flex items-center justify-center px-4 pt-20 pb-8">
-            <div className="w-full max-w-[1536px] mx-auto flex items-center justify-between relative">
+          {/* Note: Changed to flex-col to allow mobile leaders at the top */}
+          <div className="relative z-10 w-full h-full grow flex flex-col items-center justify-center   pb-8 lg:pt-20">
+            
+            {/* MOBILE LEADERS (Visible only on Mobile/Tablet) - MOVED TO TOP */}
+            <ScrollReveal direction="up" className="flex lg:hidden flex-col items-center w-full max-w-[420px] mb-8">
+              <div className="flex flex-row justify-between items-end w-full">
+                {/* PM Modi - Slightly Larger on Mobile */}
+                <div className="w-[52%] h-[240px] flex justify-center items-end overflow-hidden">
+                  <img src="/FTA/modi_ji-removebg-preview.png" alt="PM Modi" className="w-full h-full object-contain object-bottom block" />
+                </div>
+                {/* CM Yadav */}
+                <div className="w-[48%] h-[210px] flex justify-center items-end overflow-hidden">
+                  <img src="/FTA/mohan_yadav-removebg-preview.png" alt="CM Yadav" className="w-full h-full object-contain object-bottom block" />
+                </div>
+              </div>
+              <div className="flex flex-row w-full shadow-md bg-[#004B87] border-t-[3px] border-[#FFD700]">
+                <div className="text-center py-2.5 w-[52%]">
+                  <h4 className="font-bold text-white text-[14px] m-0">Narendra Modi</h4>
+                  <p className="text-white/60 text-[10px] mt-1 m-0 leading-none">Hon'ble PM, India</p>
+                </div>
+                <div className="text-center py-2.5 w-[48%] border-l border-white/15">
+                  <h4 className="font-bold text-white text-[13px] m-0">Dr. Mohan Yadav</h4>
+                  <p className="text-white/60 text-[9px] mt-1 m-0 leading-none">Hon'ble CM, MP</p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* DESKTOP LAYOUT WRAPPER */}
+            <div className="w-full max-w-[1536px] mx-auto flex flex-col lg:flex-row items-center justify-between relative">
               
-              {/* LEFT LEADER (PM Modi) - Hidden on Mobile/Tablet */}
-              <ScrollReveal direction="left" className="hidden lg:flex flex-col items-center w-[220px]">
-                <div className="h-[250px] w-full flex justify-center items-end overflow-hidden">
+              {/* LEFT LEADER (PM Modi) - Desktop */}
+              <ScrollReveal direction="left" className="hidden lg:flex flex-col items-center w-[280px]">
+                <div className="h-[360px] w-full flex justify-center items-end overflow-hidden">
                    <img src="/FTA/modi_ji-removebg-preview.png" alt="PM Narendra Modi" className="w-full h-full object-contain object-bottom block" />
                 </div>
-                <div className="w-full text-center py-2 shadow-sm bg-[#004B87] border-t-[3px] border-[#FFD700]">
-                  <h4 className="font-bold text-white text-[15px] m-0">Narendra Modi</h4>
-                  <p className="text-white/50 text-[10px] mt-1 m-0 leading-none">Hon'ble Prime Minister, India</p>
+                <div className="w-full text-center py-3 shadow-md bg-[#004B87] border-t-[4px] border-[#FFD700]">
+                  <h4 className="font-bold text-white text-[18px] m-0">Narendra Modi</h4>
+                  <p className="text-white/60 text-[12px] mt-1 m-0 leading-none">Hon'ble Prime Minister, India</p>
                 </div>
               </ScrollReveal>
 
               {/* CENTER TEXT AREA */}
-              <ScrollReveal direction="up" className="flex flex-col items-center text-center px-4 md:px-8 grow max-w-[950px]">
-                <div className="bg-white text-gray-900 font-bold rounded-full px-4 py-1.5 mb-6 shadow-sm text-[10px] tracking-[1px] uppercase">
+              <ScrollReveal direction="up" className="flex flex-col items-center text-center px-0 md:px-8 grow max-w-[950px]">
+                <div className="bg-white text-gray-900 font-bold rounded-full px-5 py-2 mb-6 shadow-sm text-[11px] tracking-[1px] uppercase">
                   Government of Madhya Pradesh · MPIDC
                 </div>
                 
@@ -87,63 +114,39 @@ export default function App() {
                   India’s trade agreements with the United Kingdom, the UAE, Australia, the EFTA countries, Oman and New Zealand have removed the duty on almost everything Madhya Pradesh exports. Most of that saving is still unclaimed. The Accelerator takes eighty firms of the State through four phases: the agreement for your product, the rule of origin, the market costs, and the buyer.
                 </p>
                 
-                <p className="font-light text-white text-center mb-10 md:hidden text-[0.9rem] leading-[1.6]">
+                <p className="font-light text-white text-center mb-10 md:hidden text-[0.95rem] leading-[1.7]">
                   India’s trade agreements have removed duty on almost everything MP exports. The Accelerator takes 80 firms through the agreement, rules of origin, market costs, and buyers to claim these savings.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-                  <Link href="/apply" className="font-bold rounded-full px-6 py-3 shadow-lg bg-[#FFD700] text-[#002A54] text-[1rem] w-full max-w-[200px] text-center hover:-translate-y-1 transition-transform">
+                  <Link href="/apply" className="font-bold rounded-full px-6 py-3.5 shadow-lg bg-[#FFD700] text-[#002A54] text-[1.05rem] w-full max-w-[200px] text-center hover:-translate-y-1 transition-transform">
                     Apply now
                   </Link>
-                  <Link href="#phases" className="text-white font-medium rounded-full px-6 py-3 bg-white/10 border border-white/30 backdrop-blur-sm text-[1rem] w-full max-w-[200px] text-center hover:bg-white/20 transition-colors">
+                  <Link href="#phases" className="text-white font-medium rounded-full px-6 py-3.5 bg-white/10 border border-white/30 backdrop-blur-sm text-[1.05rem] w-full max-w-[220px] text-center hover:bg-white/20 transition-colors">
                     The programme
                   </Link>
-                  <Link href="#contact" className="text-white font-medium rounded-full px-6 py-3 bg-white/10 border border-white/30 backdrop-blur-sm text-[1rem] w-full max-w-[200px] text-center hover:bg-white/20 transition-colors">
+                  <Link href="#contact" className="text-white font-medium rounded-full px-6 py-3.5 bg-white/10 border border-white/30 backdrop-blur-sm text-[1.05rem] w-full max-w-[200px] text-center hover:bg-white/20 transition-colors">
                     Call Helpdesk
                   </Link>
                 </div>
               </ScrollReveal>
 
-              {/* RIGHT LEADER (CM Yadav) - Hidden on Mobile/Tablet */}
-              <ScrollReveal direction="right" className="hidden lg:flex flex-col items-center w-[220px]">
-                <div className="h-[240px] w-full flex justify-center items-end overflow-hidden">
+              {/* RIGHT LEADER (CM Yadav) - Desktop */}
+              <ScrollReveal direction="right" className="hidden lg:flex flex-col items-center w-[250px]">
+                <div className="h-[310px] w-full flex justify-center items-end overflow-hidden">
                    <img src="/FTA/mohan_yadav-removebg-preview.png" alt="CM Dr. Mohan Yadav" className="w-full h-full object-contain object-bottom block" />
                 </div>
-                <div className="w-full text-center py-2 shadow-sm bg-[#004B87] border-t-[3px] border-[#FFD700]">
-                  <h4 className="font-bold text-white text-[15px] m-0">Dr. Mohan Yadav</h4>
-                  <p className="text-white/50 text-[10px] mt-1 m-0 leading-none">Hon'ble Chief Minister, MP</p>
+                <div className="w-full text-center py-3 shadow-md bg-[#004B87] border-t-[4px] border-[#FFD700]">
+                  <h4 className="font-bold text-white text-[16px] m-0">Dr. Mohan Yadav</h4>
+                  <p className="text-white/60 text-[11px] mt-1 m-0 leading-none">Hon'ble Chief Minister, MP</p>
                 </div>
               </ScrollReveal>
 
             </div>
           </div>
 
-          {/* MOBILE LEADERS (Visible only on Mobile/Tablet) */}
-          <div className="flex lg:hidden flex-col items-center w-full z-20 pb-8 px-4 mt-6">
-            <div className="flex flex-col w-full max-w-[350px]">
-              <div className="flex flex-row justify-between w-full h-[180px]">
-                <div className="w-[50%] h-full flex justify-center items-end overflow-hidden">
-                  <img src="/FTA/modi_ji-removebg-preview.png" alt="PM Modi" className="w-full h-full object-contain object-bottom block" />
-                </div>
-                <div className="w-[50%] h-full flex justify-center items-end overflow-hidden">
-                  <img src="/FTA/mohan_yadav-removebg-preview.png" alt="CM Yadav" className="w-full h-full object-contain object-bottom block" />
-                </div>
-              </div>
-              <div className="flex flex-row w-full shadow-sm bg-[#004B87] border-t-[3px] border-[#FFD700]">
-                <div className="text-center py-2 w-[50%]">
-                  <h4 className="font-bold text-white text-[13px] m-0">Narendra Modi</h4>
-                  <p className="text-white/50 text-[9px] mt-1 m-0 leading-none">Hon'ble PM, India</p>
-                </div>
-                <div className="text-center py-2 w-[50%] border-l border-white/15">
-                  <h4 className="font-bold text-white text-[13px] m-0">Dr. Mohan Yadav</h4>
-                  <p className="text-white/50 text-[9px] mt-1 m-0 leading-none">Hon'ble CM, MP</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* BOTTOM FACTS CARDS */}
-          <div className="relative z-20 w-full mx-auto px-4 md:px-6 pb-6 mt-auto lg:mt-0 max-w-[1536px]">
+          <div className="relative z-20 w-full mx-auto px-4 md:px-6 pb-6 mt-8 lg:mt-0 max-w-[1536px]">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 m-0">
               {[
                 { icon: <Clock size={20} className="text-white" />, label: "12 Weeks", sub: "1 Dec '26 - 28 Feb '27" },
