@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Building2, User, LayoutGrid, Package, Globe, MessageSquare, 
   CheckSquare, Send, CheckCircle2, ArrowLeft, Settings, 
-  FlaskConical, Leaf, Shirt, UploadCloud, AlertCircle, ArrowRight
+  FlaskConical, Leaf, Shirt, UploadCloud, AlertCircle, ArrowRight,
+  Check
 } from "lucide-react";
 
 // IMPORT HEADER AND FOOTER (Path apne folder structure ke hisaab se adjust kar lena)
@@ -45,7 +46,7 @@ export default function ApplyPage() {
   const totalSteps = 7;
 
   const stepTitles = [
-    "Firm Details", "Attendee Info", "Sector Track", "Product Details", "Market & Buyer", "Final Question", "Declaration"
+    "Firm Details", "Attendee", "Sector Track", "Product", "Market & Buyer", "One Question", "Declaration"
   ];
 
   // Validate current step before moving next
@@ -145,15 +146,62 @@ export default function ApplyPage() {
         {/* ------------------------------------------------------------- */}
         {/* MULTI-STEP WIZARD FORM AREA                                   */}
         {/* ------------------------------------------------------------- */}
-        <section className="py-16 px-4">
+        <section className="py-12 px-4">
           <div className="w-full max-w-screen-lg mx-auto py-2">
             
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
-                <div className="w-full mx-auto max-w-[850px]">
+                <div className="w-full mx-auto max-w-[900px]">
                   
-                  {/* WIZARD PROGRESS BAR */}
-                  <div className="mb-10 pb-4">
+                  {/* NEW HORIZONTAL STEPPER WITH HEADINGS */}
+                  <div className="mb-12 hidden md:block">
+                    <div className="flex justify-between relative">
+                      {/* Background Line */}
+                      <div className="absolute top-[18px] left-[5%] right-[5%] h-[3px] bg-gray-200 z-0 rounded-full"></div>
+                      
+                      {stepTitles.map((title, index) => {
+                        const stepNum = index + 1;
+                        const isCompleted = stepNum < currentStep;
+                        const isActive = stepNum === currentStep;
+
+                        return (
+                          <div key={index} className="relative z-10 flex flex-col items-center flex-1">
+                            {/* Step Circle & Connector */}
+                            <div className="flex items-center w-full justify-center">
+                              {/* Left connector fill (only for steps > 1) */}
+                              {index > 0 && (
+                                <div className={`absolute top-[18px] left-0 w-1/2 h-[3px] ${isCompleted || isActive ? 'bg-green-500' : 'bg-transparent'} transition-colors duration-500`}></div>
+                              )}
+                              
+                              {/* Right connector fill */}
+                              {index < totalSteps - 1 && (
+                                <div className={`absolute top-[18px] right-0 w-1/2 h-[3px] ${isCompleted ? 'bg-green-500' : 'bg-transparent'} transition-colors duration-500`}></div>
+                              )}
+
+                              {/* Circle */}
+                              <div 
+                                className={`w-[40px] h-[40px] rounded-full flex items-center justify-center font-bold text-[14px] transition-all duration-500 z-20 
+                                  ${isCompleted ? 'bg-green-500 text-white shadow-md' : 
+                                    isActive ? 'bg-[#004B87] text-white shadow-md ring-4 ring-[#004B87]/20 scale-110' : 
+                                    'bg-white text-gray-400 border-2 border-gray-200'}`}
+                              >
+                                {isCompleted ? <Check size={20} /> : stepNum}
+                              </div>
+                            </div>
+                            
+                            {/* Step Title */}
+                            <span className={`mt-3 text-[11px] font-bold uppercase tracking-[0.5px] text-center transition-colors duration-300
+                              ${isCompleted ? 'text-green-600' : isActive ? 'text-[#004B87]' : 'text-gray-400'}`}>
+                              {title}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* MOBILE PROGRESS BAR (Fallback for small screens) */}
+                  <div className="mb-10 pb-4 md:hidden">
                     <div className="flex justify-between items-end mb-3">
                       <span className="font-bold text-[#004B87] uppercase text-[12px] tracking-[1px]">
                         Step {currentStep} of {totalSteps}
