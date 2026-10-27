@@ -514,7 +514,7 @@ export default function App() {
                           </li>
                         ))}
                       </ul>
-                      <Link href="/sector" className="inline-flex justify-center items-center w-full px-4 py-2 mt-auto font-bold rounded text-gray-900 border border-gray-300 hover:bg-gray-100 transition-colors text-[0.875rem]">
+                      <Link href="/sectors" className="inline-flex justify-center items-center w-full px-4 py-2 mt-auto font-bold rounded text-gray-900 border border-gray-300 hover:bg-gray-100 transition-colors text-[0.875rem]">
                         See the track
                       </Link>
                     </div>
