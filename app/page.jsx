@@ -72,7 +72,7 @@ export default function App() {
 
     
 {/* PM MODI - DESKTOP */}
-<div className="hidden w-full min-w-0 lg:block mt-15">
+<div className="hidden w-full min-w-0 lg:block mt-12">
   <ScrollReveal direction="left" className="w-full">
     <div className="flex h-[190px] w-full items-start justify-center overflow-hidden xl:h-[ 20px]">
       <img
