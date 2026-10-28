@@ -1,12 +1,17 @@
 import { NextResponse } from 'next/server';
 
+import Contact from '../../models/contact';
+
 export async function POST(request) {
   try {
-    // 1. Request se data extract karo
+    // 1. Database se connect karo
+    await connectDB();
+
+    // 2. Request se data extract karo
     const body = await request.json();
     const { name, firm, mobile, email, question } = body;
 
-    // 2. Simple Validation
+    // 3. Validation
     if (!name || !firm || !mobile || !email || !question) {
       return NextResponse.json(
         { error: "All fields are required" },
@@ -14,25 +19,25 @@ export async function POST(request) {
       );
     }
 
-    // ==========================================
-    // 3. ACTUAL BACKEND LOGIC YAHAN AAYEGA
-    //
-    // Option A (Database): MongoDB ya PostgreSQL me save karlo
-    // await db.collection('contact_queries').insertOne({ name, firm, mobile, email, question, createdAt: new Date() });
-    //
-    // Option B (Email): Nodemailer ya Resend API se "fta@mpidc.gov.in" par email bhej do
-    // ==========================================
+    // 4. Mongoose Model ke through data MongoDB me save karo
+    const newQuery = await Contact.create({
+      name,
+      firm,
+      mobile,
+      email,
+      question
+    });
 
-    console.log("New Query Received:", { name, firm, mobile, email, question });
+    console.log("Query Saved to Database:", newQuery._id);
 
-    // 4. Success Response
+    // 5. Success Response
     return NextResponse.json(
       { message: "Your query has been successfully submitted." },
       { status: 200 }
     );
     
   } catch (error) {
-    console.error("Error processing contact form:", error);
+    console.error("Database Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
