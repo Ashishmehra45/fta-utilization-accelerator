@@ -151,7 +151,7 @@ export default function App() {
         </div>
 
         {/* MAIN HEADING */}
-        <h1 className="mb-5 text-center text-[clamp(2.2rem,4vw,4rem)] font-black leading-[1.08] tracking-[-1px] text-white">
+        <h1 className="mb-5 text-center font-bold text-[clamp(2.2rem,4vw,4rem)] font-black leading-[1.08]  text-white">
           Madhya Pradesh
           <br />
           FTA Accelerator
