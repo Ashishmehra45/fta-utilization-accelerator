@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google"; // Inter ki jagah Montserrat import kiya
+import { Montserrat } from "next/font/google"; // Montserrat import kiya
 import "./globals.css";
 
 // Montserrat font configure kar rahe hain
 const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-montserrat", // Variable name update kiya
+  variable: "--font-montserrat", // Variable name set kiya
   display: 'swap',
 });
 
@@ -23,9 +23,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} h-full antialiased`} // Yahan variable pass kiya
+      className={`${montserrat.variable} h-full antialiased`} // Yahan naya variable pass kiya
     >
-      {/* font-sans ke sath montserrat.className bhi laga diya taaki font turant apply ho jaye */}
       <body className={`${montserrat.className} min-h-full flex flex-col bg-gray-50 text-[#333333]`}>
         {children}
       </body>
