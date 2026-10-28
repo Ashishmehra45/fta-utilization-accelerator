@@ -34,7 +34,7 @@ export default function Header() {
             padding: 8px 0;
             display: flex;
             align-items: center;
-            border-bottom: 2px solid #FFD700;
+            
           }
           .header-marquee-content {
             display: inline-block;
@@ -63,14 +63,14 @@ export default function Header() {
       {/* TOP STRIP - SEAMLESS MARQUEE */}
       <div className="header-marquee-container relative z-40">
         <div className="header-marquee-content">
-          <span className="header-marquee-item"><strong className="text-white">Madhya Pradesh FTA Accelerator</strong></span> •
+          <span className="header-marquee-item">Madhya Pradesh FTA Accelerator</span> •
           <span className="header-marquee-item"><Calendar size={12}/> Cohort 1: 1 Dec 2026 to 28 Feb 2027</span> •
-          <span className="header-marquee-item" style={{ color: '#FFD700' }}><AlertTriangle size={12}/> Enrolment closes 30 Nov 2026</span> •
+          <span className="header-marquee-item" style={{ color: '#white' }}><AlertTriangle size={12}/> Enrolment closes 30 Nov 2026</span> •
           <span className="header-marquee-item"><PhoneCall size={12}/> FTA Helpdesk: 1800-XXX-XXXX</span> •
           
-          <span className="header-marquee-item"><strong className="text-white">Madhya Pradesh FTA Accelerator</strong></span> •
+          <span className="header-marquee-item">Madhya Pradesh FTA Accelerator</span> •
           <span className="header-marquee-item"><Calendar size={12}/> Cohort 1: 1 Dec 2026 to 28 Feb 2027</span> •
-          <span className="header-marquee-item" style={{ color: '#FFD700' }}><AlertTriangle size={12}/> Enrolment closes 30 Nov 2026</span> •
+          <span className="header-marquee-item" style={{ color: '#white' }}><AlertTriangle size={12}/> Enrolment closes 30 Nov 2026</span> •
           <span className="header-marquee-item"><PhoneCall size={12}/> FTA Helpdesk: 1800-XXX-XXXX</span> •
         </div>
       </div>
@@ -93,12 +93,10 @@ export default function Header() {
             </div>
             <div className="hidden sm:block mx-1 md:mx-2 h-[40px] w-[2px] bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
             <div className="hidden sm:flex flex-col justify-center">
-              <span className="font-black uppercase leading-none text-[14px] tracking-[0.5px] bg-gradient-to-r from-[#004B87] to-blue-600 bg-clip-text text-transparent">
-                FTA Accelerator
+              <span className="font-bold uppercase leading-none text-[14px] tracking-[0.5px]  text-[#004B87]">
+              MP  FTA Accelerator
               </span>
-              <span className="font-bold uppercase leading-none mt-1 text-yellow-500 text-[8px] tracking-[2px]">
-                Global Trade Desk
-              </span>
+             
             </div>
           </Link>
           

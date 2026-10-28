@@ -158,7 +158,7 @@ export default function App() {
         </h1>
 
         {/* SUBHEADING */}
-        <p className="mb-5 max-w-[700px] text-center text-[clamp(1rem,1.6vw,1.35rem)] font-bold leading-[1.45] text-blue-100">
+        <p className="mb-5 max-w-[700px] text-center text-[clamp(1rem,1.6vw,1.35rem)]  leading-[1.45] text-blue-100">
           Twelve weeks from your product to your first shipment under a trade agreement.
         </p>
 
@@ -351,7 +351,7 @@ export default function App() {
         {/* ONE OUTCOME & TOOLS (CARDS) */}
         <section
           id="outcomes"
-          className="py-20 px-4 bg-white border-b border-gray-100"
+          className="mt-[-80px] bg-white border-b border-gray-100"
         >
           <div className="w-full max-w-screen-xl mx-auto">
             {/* Header Section */}

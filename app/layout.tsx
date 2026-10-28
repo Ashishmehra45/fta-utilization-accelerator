@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google"; // Inter ki jagah Montserrat import kiya
 import "./globals.css";
 
-// Using Inter font to match your FTA Accelerator design system
-const inter = Inter({
+// Montserrat font configure kar rahe hain
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-montserrat", // Variable name update kiya
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -22,9 +23,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} h-full antialiased`}
+      className={`${montserrat.variable} h-full antialiased`} // Yahan variable pass kiya
     >
-      <body className="min-h-full flex flex-col bg-gray-50 text-[#333333] font-sans">
+      {/* font-sans ke sath montserrat.className bhi laga diya taaki font turant apply ho jaye */}
+      <body className={`${montserrat.className} min-h-full flex flex-col bg-gray-50 text-[#333333]`}>
         {children}
       </body>
     </html>
