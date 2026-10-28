@@ -16,6 +16,7 @@ export default function Header() {
     { label: "Sectors", path: "/sectors" },
     { label: "Who Can Apply", path: "/who-can-apply" },
     { label: "Apply Now", path: "/apply" },
+    { label: "FAQ", path: "/FAQs" },
     { label: "Contact Us", path: "/contact" } 
   ];
 

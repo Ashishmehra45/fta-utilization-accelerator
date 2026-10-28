@@ -334,7 +334,7 @@ export default function ProgrammePage() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Link href="/apply" className="font-bold rounded-full px-8 py-4 uppercase shadow-lg flex items-center justify-center gap-2 bg-[#002A54] text-[#002A54] tracking-[1px] hover:-translate-y-1 transition-transform">
+                <Link href="/apply" className="font-bold rounded-full px-8 py-4 uppercase shadow-lg flex items-center justify-center gap-2 bg-[#002A54] text-[#eaebec] tracking-[1px] hover:scale-105 transition-transform duration-300 border-2 border-[#d3d4d5] hover:bg-[#eaebec] hover:text-[#002A54]">
                   Apply now <ArrowRight size={18}/>
                 </Link>
                 <Link href="/sector" className="border-2 border-white/50 text-white font-bold rounded-full px-8 py-4 uppercase flex items-center justify-center tracking-[1px] hover:bg-white hover:text-[#002A54] transition-colors">
