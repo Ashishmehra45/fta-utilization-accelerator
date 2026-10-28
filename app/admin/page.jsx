@@ -48,7 +48,7 @@ export default function AdminDashboard() {
       {/* TOP NAVIGATION - Hidden during PDF print */}
       <header className="bg-[#004B87] text-white px-6 py-4 shadow-md flex justify-between items-center print:hidden">
         <div className="flex items-center gap-3">
-          <Building2 size={24} className="text-[#FFD700]" />
+          <Building2 size={24} className="text-[#002A54]" />
           <h1 className="font-black text-xl tracking-wide uppercase">FTA Admin Portal</h1>
         </div>
         <Link href="/" className="text-white/80 hover:text-white font-medium text-sm transition-colors flex items-center gap-2">

@@ -54,13 +54,13 @@ export default function EligibilityPage() {
 
           <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 py-16 text-center">
             <ScrollReveal direction="up" className="mx-auto max-w-[800px]">
-              <span className="inline-block bg-[#FFD700] text-[#002A54] px-4 py-2 mb-6 font-bold uppercase tracking-[1px] text-[12px] rounded-full shadow-sm">
+              <span className="inline-block bg-[#eaeaea] text-[#002A54] px-4 py-2 mb-6 font-bold uppercase tracking-[1px] text-[12px] rounded-full shadow-sm">
                 Eligibility Check
               </span>
               <h1 className="font-black text-white mb-6 text-[clamp(2.5rem,5vw,4rem)] tracking-[-1px] leading-[1.1]">
                 Who can apply
               </h1>
-              <p className="font-bold mb-6 text-[clamp(1.1rem,2vw,1.4rem)] text-[#FFD700]">
+              <p className="font-bold mb-6 text-[clamp(1.1rem,2vw,1.4rem)] text-[#e9eaeb]">
                 Four conditions. Firms of every size. Twenty seats in each sector.
               </p>
               <p className="text-white/70 font-light mx-auto mb-0 text-[1.05rem] leading-[1.8] max-w-[600px]">
@@ -77,7 +77,7 @@ export default function EligibilityPage() {
           <div className="w-full max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-black text-[#004B87] mb-4 text-[2.5rem] tracking-[-0.5px]">The four conditions</h2>
-              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#FFD700]"></div>
+              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#002A54]"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -131,7 +131,7 @@ export default function EligibilityPage() {
           <div className="w-full max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-black text-[#004B87] mb-4 text-[2.5rem] tracking-[-0.5px]">Also welcome to apply</h2>
-              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#FFD700]"></div>
+              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#002A54]"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -179,7 +179,7 @@ export default function EligibilityPage() {
 
                   <div className="p-6 rounded-3xl bg-white/10 border border-white/20 backdrop-blur-sm">
                     <p className="text-white mb-0 text-[0.95rem] leading-[1.6]">
-                      <strong className="text-[#FFD700]">Waitlist Guarantee:</strong> Firms not placed in cohort 1 go on the waiting list and are offered a seat in cohort 2 (October 2027) without applying again. Cohort lists are published on <strong>30 November 2026</strong>.
+                      <strong className="text-[#002A54]">Waitlist Guarantee:</strong> Firms not placed in cohort 1 go on the waiting list and are offered a seat in cohort 2 (October 2027) without applying again. Cohort lists are published on <strong>30 November 2026</strong>.
                     </p>
                   </div>
                 </ScrollReveal>
@@ -216,7 +216,7 @@ export default function EligibilityPage() {
           <div className="w-full max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-black text-[#004B87] mb-4 text-[2.5rem] tracking-[-0.5px]">Mutual Commitments</h2>
-              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#FFD700]"></div>
+              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#002A54]"></div>
               <p className="text-gray-600 mt-6 mx-auto max-w-[600px] text-[1.05rem]">What we expect from you, and what you can expect from us.</p>
             </div>
 
@@ -295,7 +295,7 @@ export default function EligibilityPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Link href="/apply" className="font-bold rounded-full px-8 py-4 uppercase shadow-lg flex items-center justify-center gap-2 bg-[#FFD700] text-[#002A54] tracking-[1px] hover:scale-105 transition-transform duration-300">
+                <Link href="/apply" className="font-bold rounded-full px-8 py-4 uppercase shadow-lg flex items-center justify-center gap-2 bg-[#002A54] text-[#002A54] tracking-[1px] hover:scale-105 transition-transform duration-300">
                   Apply now <ArrowRight size={18}/>
                 </Link>
                 <Link href="#faq" className="border-2 border-white/50 text-white font-bold rounded-full px-8 py-4 uppercase flex items-center justify-center gap-2 tracking-[1px] hover:bg-white hover:text-[#002A54] transition-colors duration-300">

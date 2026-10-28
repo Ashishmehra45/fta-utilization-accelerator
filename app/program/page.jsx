@@ -122,13 +122,13 @@ export default function ProgrammePage() {
 
           <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 py-16 text-center">
             <ScrollReveal direction="up" className="mx-auto max-w-[800px]">
-              <span className="inline-block bg-[#FFD700] text-[#002A54] px-4 py-2 mb-6 font-bold uppercase tracking-[1px] text-[12px] rounded-full shadow-sm">
+              <span className="inline-block bg-[#f1efe5] text-[#002A54] px-4 py-2 mb-6 font-bold uppercase tracking-[1px] text-[12px] rounded-full shadow-sm">
                 Detailed Overview
               </span>
               <h1 className="font-black text-white mb-6 text-[clamp(2.5rem,5vw,4rem)] tracking-[-1px] leading-[1.1]">
                 The Programme
               </h1>
-              <p className="font-bold mb-6 text-[clamp(1.1rem,2vw,1.4rem)] text-[#FFD700]">
+              <p className="font-bold mb-6 text-[clamp(1.1rem,2vw,1.4rem)] text-[#e9e8e6]">
                 Four phases, eight sessions, four one-to-one calls, buyer meetings in February, ninety days of follow-up.
               </p>
               <p className="text-white/70 font-light mx-auto mb-0 text-[1.05rem] leading-[1.8] max-w-[700px]">
@@ -145,7 +145,7 @@ export default function ProgrammePage() {
           <div className="w-full max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-black text-[#004B87] mb-4 text-[2.5rem] tracking-[-0.5px]">The Format</h2>
-              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#FFD700]"></div>
+              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#002A54]"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -187,7 +187,7 @@ export default function ProgrammePage() {
             
             <div className="text-center mb-16">
               <h2 className="font-black text-[#004B87] mb-4 text-[2.5rem] tracking-[-0.5px]">The Four Phases</h2>
-              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#FFD700]"></div>
+              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#002A54]"></div>
             </div>
 
             <div className="flex flex-col gap-12">
@@ -301,7 +301,7 @@ export default function ProgrammePage() {
           <div className="w-full max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-black text-[#004B87] mb-4 text-[2.5rem] tracking-[-0.5px]">After the programme</h2>
-              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#FFD700]"></div>
+              <div className="mx-auto rounded w-[60px] h-[4px] bg-[#002A54]"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -334,7 +334,7 @@ export default function ProgrammePage() {
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Link href="/apply" className="font-bold rounded-full px-8 py-4 uppercase shadow-lg flex items-center justify-center gap-2 bg-[#FFD700] text-[#002A54] tracking-[1px] hover:-translate-y-1 transition-transform">
+                <Link href="/apply" className="font-bold rounded-full px-8 py-4 uppercase shadow-lg flex items-center justify-center gap-2 bg-[#002A54] text-[#002A54] tracking-[1px] hover:-translate-y-1 transition-transform">
                   Apply now <ArrowRight size={18}/>
                 </Link>
                 <Link href="/sector" className="border-2 border-white/50 text-white font-bold rounded-full px-8 py-4 uppercase flex items-center justify-center tracking-[1px] hover:bg-white hover:text-[#002A54] transition-colors">

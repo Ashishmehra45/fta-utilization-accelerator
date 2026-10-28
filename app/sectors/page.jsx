@@ -141,13 +141,13 @@ export default function SectorTracksPage() {
 
           <div className="relative z-10 w-full max-w-screen-xl mx-auto px-4 py-16 text-center">
             <ScrollReveal direction="up" className="mx-auto max-w-[800px]">
-              <span className="inline-block bg-[#FFD700] text-[#002A54] px-4 py-2 mb-6 font-bold uppercase tracking-[1px] text-[12px] rounded-full shadow-sm">
+              <span className="inline-block bg-[#fafafa] text-[#3b3939] px-4 py-2 mb-6 font-bold uppercase tracking-[1px] text-[12px] rounded-full shadow-sm">
                 Sector Focus
               </span>
               <h1 className="font-black text-white mb-6 text-[clamp(2.5rem,5vw,4rem)] tracking-[-1px] leading-[1.1]">
                 Four Sector Tracks
               </h1>
-              <p className="font-bold mb-6 text-[clamp(1.1rem,2vw,1.4rem)] text-[#FFD700]">
+              <p className="font-bold mb-6 text-[clamp(1.1rem,2vw,1.4rem)] text-[#edeef0]">
                 Twenty firms in each. The examples, the rules and the faculty are those of the sector.
               </p>
               <p className="text-white/70 font-light mx-auto mb-0 text-[1.05rem] leading-[1.8] max-w-[700px]">
