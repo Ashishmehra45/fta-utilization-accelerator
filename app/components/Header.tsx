@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Calendar, AlertTriangle, PhoneCall } from "lucide-react"; 
+import { label } from "framer-motion/client";
 // BOOTSTRAP IMPORT REMOVED FROM HERE 🚀
 
 export default function Header() {
@@ -17,6 +18,7 @@ export default function Header() {
     { label: "Who Can Apply", path: "/who-can-apply" },
     { label: "Apply Now", path: "/apply" },
     { label: "FAQ", path: "/FAQs" },
+    // {label: "Partner", path: "/partners" },
     { label: "Contact Us", path: "/contact" } 
   ];
 
