@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/apply/page.jsx", "app/program/page.jsx", "app/who-can-apply/page.jsx", "app/page.jsx", "app/sectors/page.jsx"  ],
+, "app/apply/page.jsx", "app/program/page.jsx", "app/who-can-apply/page.jsx", "app/page.jsx", "app/sectors/page.jsx", "app/models/ApplicationModel.js"  ],
   "exclude": ["node_modules"]
 }

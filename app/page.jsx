@@ -42,132 +42,132 @@ export default function App() {
       <Header />
 
       <main>
-        {/* ------------------------------------------------------------- */}
-        {/* HERO SECTION - PERFECT ALIGNMENT WITH LEADERS ON LEFT/RIGHT   */}
-        {/* ------------------------------------------------------------- */}
-        <section className="relative flex flex-col justify-between overflow-hidden min-h-[90vh] bg-[#0A192F]">
-          
-          {/* Background Layer */}
-          <div className="absolute top-0 left-0 w-full h-full z-0">
-            <img src="/FTA/667484d3-5998-4832-a549-b1b574ca67b4.jpg" alt="Madhya Pradesh Industry Background" className="w-full h-full object-cover" />
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#001932]/70 to-[#000a19]/90" />
-          </div>
-
-          {/* MAIN CONTENT AREA WITH LEADERS */}
-          {/* Note: Changed to flex-col to allow mobile leaders at the top */}
-          <div className="relative z-10 w-full h-full grow flex flex-col items-center justify-center   pb-8 lg:pt-20">
+          {/* ------------------------------------------------------------- */}
+          {/* HERO SECTION - PERFECT ALIGNMENT WITH LEADERS ON LEFT/RIGHT   */}
+          {/* ------------------------------------------------------------- */}
+          <section className="relative flex flex-col justify-between overflow-hidden min-h-[90vh] bg-[#0A192F]">
             
-            {/* MOBILE LEADERS (Visible only on Mobile/Tablet) - MOVED TO TOP */}
-            <ScrollReveal direction="up" className="flex lg:hidden flex-col items-center w-full max-w-[420px] mb-8">
-              <div className="flex flex-row justify-between items-end w-full">
-                {/* PM Modi - Slightly Larger on Mobile */}
-                <div className="w-[52%] h-[240px] flex justify-center items-end overflow-hidden">
-                  <img src="/FTA/modi_ji-removebg-preview.png" alt="PM Modi" className="w-full h-full object-contain object-bottom block" />
-                </div>
-                {/* CM Yadav */}
-                <div className="w-[48%] h-[210px] flex justify-center items-end overflow-hidden">
-                  <img src="/FTA/mohan_yadav-removebg-preview.png" alt="CM Yadav" className="w-full h-full object-contain object-bottom block" />
-                </div>
-              </div>
-              <div className="flex flex-row w-full shadow-md bg-[#004B87] border-t-[3px] border-[#FFD700]">
-                <div className="text-center py-2.5 w-[52%]">
-                  <h4 className="font-bold text-white text-[14px] m-0">Narendra Modi</h4>
-                  <p className="text-white/60 text-[10px] mt-1 m-0 leading-none">Hon'ble PM, India</p>
-                </div>
-                <div className="text-center py-2.5 w-[48%] border-l border-white/15">
-                  <h4 className="font-bold text-white text-[13px] m-0">Dr. Mohan Yadav</h4>
-                  <p className="text-white/60 text-[9px] mt-1 m-0 leading-none">Hon'ble CM, MP</p>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            {/* DESKTOP LAYOUT WRAPPER */}
-            <div className="w-full max-w-[1536px] mx-auto flex flex-col lg:flex-row items-center justify-between relative">
-              
-              {/* LEFT LEADER (PM Modi) - Desktop */}
-              <ScrollReveal direction="left" className="hidden lg:flex flex-col items-center w-[280px]">
-                <div className="h-[360px] w-full flex justify-center items-end overflow-hidden">
-                   <img src="/FTA/modi_ji-removebg-preview.png" alt="PM Narendra Modi" className="w-full h-full object-contain object-bottom block" />
-                </div>
-                <div className="w-full text-center py-3 shadow-md bg-[#004B87] border-t-[4px] border-[#FFD700]">
-                  <h4 className="font-bold text-white text-[18px] m-0">Narendra Modi</h4>
-                  <p className="text-white/60 text-[12px] mt-1 m-0 leading-none">Hon'ble Prime Minister, India</p>
-                </div>
-              </ScrollReveal>
-
-              {/* CENTER TEXT AREA */}
-              <ScrollReveal direction="up" className="flex flex-col items-center text-center px-0 md:px-8 grow max-w-[950px]">
-                <div className="bg-white text-gray-900 font-bold rounded-full px-5 py-2 mb-6 shadow-sm text-[11px] tracking-[1px] uppercase">
-                  Government of Madhya Pradesh · MPIDC
-                </div>
-                
-                <h1 className="font-black text-white mb-6 text-center text-[clamp(2.5rem,4.5vw,4.5rem)] tracking-[-1px] leading-[1.1]">
-                  Madhya Pradesh <br className="md:hidden" />
-                  <span className="text-[#FFD700]">FTA Accelerator</span>
-                </h1>
-                
-                <p className="font-bold mb-6 text-center text-[clamp(1rem,1.8vw,1.4rem)] text-[#FFD700] leading-[1.4]">
-                  Twelve weeks from your product to your first shipment under a trade agreement.
-                </p>
-                
-                <p className="font-light text-white text-center mb-10 hidden md:block text-[clamp(0.9rem,1.2vw,1.1rem)] leading-[1.7] max-w-[850px]">
-                  India’s trade agreements with the United Kingdom, the UAE, Australia, the EFTA countries, Oman and New Zealand have removed the duty on almost everything Madhya Pradesh exports. Most of that saving is still unclaimed. The Accelerator takes eighty firms of the State through four phases: the agreement for your product, the rule of origin, the market costs, and the buyer.
-                </p>
-                
-                <p className="font-light text-white text-center mb-10 md:hidden text-[0.95rem] leading-[1.7]">
-                  India’s trade agreements have removed duty on almost everything MP exports. The Accelerator takes 80 firms through the agreement, rules of origin, market costs, and buyers to claim these savings.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-                  <Link href="/apply" className="font-bold rounded-full px-6 py-3.5 shadow-lg bg-[#FFD700] text-[#002A54] text-[1.05rem] w-full max-w-[200px] text-center hover:-translate-y-1 transition-transform">
-                    Apply now
-                  </Link>
-                  <Link href="#phases" className="text-white font-medium rounded-full px-6 py-3.5 bg-white/10 border border-white/30 backdrop-blur-sm text-[1.05rem] w-full max-w-[220px] text-center hover:bg-white/20 transition-colors">
-                    The programme
-                  </Link>
-                  <Link href="#contact" className="text-white font-medium rounded-full px-6 py-3.5 bg-white/10 border border-white/30 backdrop-blur-sm text-[1.05rem] w-full max-w-[200px] text-center hover:bg-white/20 transition-colors">
-                    Call Helpdesk
-                  </Link>
-                </div>
-              </ScrollReveal>
-
-              {/* RIGHT LEADER (CM Yadav) - Desktop */}
-              <ScrollReveal direction="right" className="hidden lg:flex flex-col items-center w-[250px]">
-                <div className="h-[310px] w-full flex justify-center items-end overflow-hidden">
-                   <img src="/FTA/mohan_yadav-removebg-preview.png" alt="CM Dr. Mohan Yadav" className="w-full h-full object-contain object-bottom block" />
-                </div>
-                <div className="w-full text-center py-3 shadow-md bg-[#004B87] border-t-[4px] border-[#FFD700]">
-                  <h4 className="font-bold text-white text-[16px] m-0">Dr. Mohan Yadav</h4>
-                  <p className="text-white/60 text-[11px] mt-1 m-0 leading-none">Hon'ble Chief Minister, MP</p>
-                </div>
-              </ScrollReveal>
-
+            {/* Background Layer */}
+            <div className="absolute top-0 left-0 w-full h-full z-0">
+              <img src="/FTA/667484d3-5998-4832-a549-b1b574ca67b4.jpg" alt="Madhya Pradesh Industry Background" className="w-full h-full object-cover" />
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#001932]/70 to-[#000a19]/90" />
             </div>
-          </div>
 
-          {/* BOTTOM FACTS CARDS */}
-          <div className="relative z-20 w-full mx-auto px-4 md:px-6 pb-6 mt-8 lg:mt-0 max-w-[1536px]">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 m-0">
-              {[
-                { icon: <Clock size={20} className="text-white" />, label: "12 Weeks", sub: "1 Dec '26 - 28 Feb '27" },
-                { icon: <Building2 size={20} className="text-white" />, label: "80 Firms", sub: "20 in 4 sectors" },
-                { icon: <Layers size={20} className="text-white" />, label: "4 Phases", sub: "Sessions & Buyer Meets" },
-                { icon: <IndianRupee size={20} className="text-white" />, label: "No Fee", sub: "State bears cohort 1" },
-                { icon: <CalendarOff size={20} className="text-white" />, label: "30 Nov 2026", sub: "Enrolment Closes" }
-              ].map((card, idx) => (
-                <ScrollReveal key={idx} delay={0.4 + (idx * 0.1)} direction="up" className="h-full">
-                  <div className="flex flex-col justify-center h-full p-4 rounded-xl text-center bg-[#001E3C]/70 border border-white/15 backdrop-blur-md transition-colors hover:bg-[#004B87]/90 cursor-default">
-                    <div className="mx-auto mb-3 p-2 rounded-full bg-white/10">
-                      {card.icon}
-                    </div>
-                    <span className="text-white font-bold block leading-none mb-1 text-[14px]">{card.label}</span>
-                    <span className="text-white/60 font-medium block leading-tight text-[10px]">{card.sub}</span>
+            {/* MAIN CONTENT AREA WITH LEADERS */}
+            {/* Note: Changed to flex-col to allow mobile leaders at the top */}
+            <div className="relative z-10 w-full h-full grow flex flex-col items-center justify-center   pb-8 lg:pt-20">
+              
+              {/* MOBILE LEADERS (Visible only on Mobile/Tablet) - MOVED TO TOP */}
+              <ScrollReveal direction="up" className="flex lg:hidden flex-col items-center w-full max-w-[420px] mb-8">
+                <div className="flex flex-row justify-between items-end w-full">
+                  {/* PM Modi - Slightly Larger on Mobile */}
+                  <div className="w-[52%] h-[240px] flex justify-center items-end overflow-hidden">
+                    <img src="/FTA/modi_ji-removebg-preview.png" alt="PM Modi" className="w-full h-full object-contain object-bottom block" />
+                  </div>
+                  {/* CM Yadav */}
+                  <div className="w-[48%] h-[210px] flex justify-center items-end overflow-hidden">
+                    <img src="/FTA/mohan_yadav-removebg-preview.png" alt="CM Yadav" className="w-full h-full object-contain object-bottom block" />
+                  </div>
+                </div>
+                <div className="flex flex-row w-full shadow-md bg-[#004B87] border-t-[3px] border-[#FFD700]">
+                  <div className="text-center py-2.5 w-[52%]">
+                    <h4 className="font-bold text-white text-[14px] m-0">Narendra Modi</h4>
+                    <p className="text-white/60 text-[10px] mt-1 m-0 leading-none">Hon'ble PM, India</p>
+                  </div>
+                  <div className="text-center py-2.5 w-[48%] border-l border-white/15">
+                    <h4 className="font-bold text-white text-[13px] m-0">Dr. Mohan Yadav</h4>
+                    <p className="text-white/60 text-[9px] mt-1 m-0 leading-none">Hon'ble CM, MP</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* DESKTOP LAYOUT WRAPPER */}
+              <div className="w-full max-w-[1536px] mx-auto flex flex-col lg:flex-row items-center justify-between relative">
+                
+                {/* LEFT LEADER (PM Modi) - Desktop */}
+                <ScrollReveal direction="left" className="hidden pb- lg:flex flex-col items-center justify-center self-center my-auto w-[280px]">
+                  <div className="h-[360px] w-full flex justify-center items-end overflow-hidden">
+                    <img src="/FTA/modi_ji-removebg-preview.png" alt="PM Narendra Modi" className="w-full h-full object-contain object-bottom block" />
+                  </div>
+                  <div className="w-full text-center py-3 shadow-md bg-[#004B87] border-t-[4px] border-[#FFD700]">
+                    <h4 className="font-bold text-white text-[18px] m-0">Narendra Modi</h4>
+                    <p className="text-white/60 text-[12px] mt-1 m-0 leading-none">Hon'ble Prime Minister, India</p>
                   </div>
                 </ScrollReveal>
-              ))}
+
+                {/* CENTER TEXT AREA */}
+                <ScrollReveal direction="up" className="flex flex-col items-center text-center px-0 md:px-8 grow max-w-[950px]">
+                  <div className="bg-white text-gray-900 font-bold rounded-full px-5 py-2 mb-6 shadow-sm text-[11px] tracking-[1px] uppercase">
+                    Government of Madhya Pradesh · MPIDC
+                  </div>
+                  
+                  <h1 className="font-black text-white mb-6 text-center text-[clamp(2.5rem,4.5vw,4.5rem)] tracking-[-1px] leading-[1.1]">
+                    Madhya Pradesh <br className="md:hidden" />
+                    <span className="text-[#FFD700]">FTA Accelerator</span>
+                  </h1>
+                  
+                  <p className="font-bold mb-6 text-center text-[clamp(1rem,1.8vw,1.4rem)] text-[#FFD700] leading-[1.4]">
+                    Twelve weeks from your product to your first shipment under a trade agreement.
+                  </p>
+                  
+                  <p className="font-light text-white text-center mb-10 hidden md:block text-[clamp(0.9rem,1.2vw,1.1rem)] leading-[1.7] max-w-[850px]">
+                    India’s trade agreements with the United Kingdom, the UAE, Australia, the EFTA countries, Oman and New Zealand have removed the duty on almost everything Madhya Pradesh exports. Most of that saving is still unclaimed. The Accelerator takes eighty firms of the State through four phases: the agreement for your product, the rule of origin, the market costs, and the buyer.
+                  </p>
+                  
+                  <p className="font-light text-white text-center mb-10 md:hidden text-[0.95rem] leading-[1.7]">
+                    India’s trade agreements have removed duty on almost everything MP exports. The Accelerator takes 80 firms through the agreement, rules of origin, market costs, and buyers to claim these savings.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                    <Link href="/apply" className="font-bold rounded-full px-6 py-3.5 shadow-lg bg-[#FFD700] text-[#002A54] text-[1.05rem] w-full max-w-[200px] text-center hover:-translate-y-1 transition-transform">
+                      Apply now
+                    </Link>
+                    <Link href="#phases" className="text-white font-medium rounded-full px-6 py-3.5 bg-white/10 border border-white/30 backdrop-blur-sm text-[1.05rem] w-full max-w-[220px] text-center hover:bg-white/20 transition-colors">
+                      The programme
+                    </Link>
+                    <Link href="#contact" className="text-white font-medium rounded-full px-6 py-3.5 bg-white/10 border border-white/30 backdrop-blur-sm text-[1.05rem] w-full max-w-[200px] text-center hover:bg-white/20 transition-colors">
+                      Call Helpdesk
+                    </Link>
+                  </div>
+                </ScrollReveal>
+
+                {/* RIGHT LEADER (CM Yadav) - Desktop */}
+                <ScrollReveal direction="right" className="hidden lg:flex flex-col items-center w-[250px]">
+                  <div className="h-[310px] w-full flex justify-center items-end overflow-hidden">
+                    <img src="/FTA/mohan_yadav-removebg-preview.png" alt="CM Dr. Mohan Yadav" className="w-full h-full object-contain object-bottom block" />
+                  </div>
+                  <div className="w-full text-center py-3 shadow-md bg-[#004B87] border-t-[4px] border-[#FFD700]">
+                    <h4 className="font-bold text-white text-[16px] m-0">Dr. Mohan Yadav</h4>
+                    <p className="text-white/60 text-[11px] mt-1 m-0 leading-none">Hon'ble Chief Minister, MP</p>
+                  </div>
+                </ScrollReveal>
+
+              </div>
             </div>
-          </div>
-        </section>
+
+            {/* BOTTOM FACTS CARDS */}
+            <div className="relative z-20 w-full mx-auto px-4 md:px-6 pb-6 mt-8 lg:mt-0 max-w-[1536px]">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4 m-0">
+                {[
+                  { icon: <Clock size={20} className="text-white" />, label: "12 Weeks", sub: "1 Dec '26 - 28 Feb '27" },
+                  { icon: <Building2 size={20} className="text-white" />, label: "80 Firms", sub: "20 in 4 sectors" },
+                  { icon: <Layers size={20} className="text-white" />, label: "4 Phases", sub: "Sessions & Buyer Meets" },
+                  { icon: <IndianRupee size={20} className="text-white" />, label: "No Fee", sub: "State bears cohort 1" },
+                  { icon: <CalendarOff size={20} className="text-white" />, label: "30 Nov 2026", sub: "Enrolment Closes" }
+                ].map((card, idx) => (
+                  <ScrollReveal key={idx} delay={0.4 + (idx * 0.1)} direction="up" className="h-full">
+                    <div className="flex flex-col justify-center h-full p-4 rounded-xl text-center bg-[#001E3C]/70 border border-white/15 backdrop-blur-md transition-colors hover:bg-[#004B87]/90 cursor-default">
+                      <div className="mx-auto mb-3 p-2 rounded-full bg-white/10">
+                        {card.icon}
+                      </div>
+                      <span className="text-white font-bold block leading-none mb-1 text-[14px]">{card.label}</span>
+                      <span className="text-white/60 font-medium block leading-tight text-[10px]">{card.sub}</span>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+          </section>
 
         {/* ------------------------------------------------------------- */}
         {/* LAUNCHED & WHY NOW (SIMPLE & CLEAN LAYOUT)                      */}
