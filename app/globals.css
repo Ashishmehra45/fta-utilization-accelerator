@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 :root {
@@ -8,10 +9,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
-  /* Yahan merriweather ki jagah montserrat set kar diya */
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  
+
+  /* Montserrat Font */
+  --font-sans: var(--font-montserrat), sans-serif;
+
   --font-mono: var(--font-geist-mono);
 }
 
@@ -25,6 +26,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  /* Default Arial ki jagah apna Montserrat variable laga diya */
-  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
 }

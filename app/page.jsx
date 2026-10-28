@@ -526,107 +526,107 @@ export default function App() {
               </p>
             </div>
 
-            {/* Phases Grid - Uniform Blue/White Theme */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
-              {[
-                {
-                  num: "Phase 1",
-                  time: "1-10 Dec 2026",
-                  title: "The agreement for your product",
-                  action:
-                    "Readiness Questionnaire. Which agreements apply, what they give, duty saved per consignment, product and market selection.",
-                  tool: "Tool 01: Duty Saving Sheet",
-                },
-                {
-                  num: "Phase 2",
-                  time: "11 Dec - 7 Jan",
-                  title: "The rule of origin and its proof",
-                  action:
-                    "Origin Questionnaire. Does the product qualify: cost sheet, rule, supplier declarations. Proof: Trade Connect, self-declaration or agency cert.",
-                  tool: "Tool 02: Origin File",
-                },
-                {
-                  num: "Phase 3",
-                  time: "8-21 Jan 2027",
-                  title: "The market: standards, cost & finance",
-                  action:
-                    "Market Questionnaire. Border/buyer requirements, certifiers, landed cost, insurance, credit, assistance to claim, price with duty advantage.",
-                  tool: "Tool 03: Market Entry Sheet",
-                },
-                {
-                  num: "Phase 4",
-                  time: "22 Jan - 28 Feb",
-                  title: "The buyer",
-                  action:
-                    "Buyer Questionnaire. One-page offer, pitch (in person); buyer meetings for each sector via Indian Missions (8-19 Feb); closing session.",
-                  tool: "Tool 04: First-Shipment Plan",
-                },
-              ].map((phase, idx) => (
-                <ScrollReveal
-                  key={idx}
-                  delay={idx * 0.1}
-                  direction="up"
-                  className="h-full"
-                >
-                  <div
-                    className="bg-white rounded-3xl border border-gray-200 h-full flex flex-col relative overflow-hidden transition-all duration-300 cursor-default"
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.transform = "translateY(-5px)";
-                      e.currentTarget.style.borderColor = "#004B87";
-                      e.currentTarget.style.boxShadow = `0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0, 75, 135, 0.05)`;
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.borderColor = "#e5e7eb";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
+              {/* Phases Grid - Uniform Blue/White Theme */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
+                {[
+                  {
+                    num: "Phase 1",
+                    time: "1-10 Dec 2026",
+                    title: "The agreement for your product",
+                    action:
+                      "Readiness Questionnaire. Which agreements apply, what they give, duty saved per consignment, product and market selection.",
+                    tool: "Tool 01: Duty Saving Sheet",
+                  },
+                  {
+                    num: "Phase 2",
+                    time: "11 Dec - 7 Jan",
+                    title: "The rule of origin and its proof",
+                    action:
+                      "Origin Questionnaire. Does the product qualify: cost sheet, rule, supplier declarations. Proof: Trade Connect, self-declaration or agency cert.",
+                    tool: "Tool 02: Origin File",
+                  },
+                  {
+                    num: "Phase 3",
+                    time: "8-21 Jan 2027",
+                    title: "The market: standards, cost & finance",
+                    action:
+                      "Market Questionnaire. Border/buyer requirements, certifiers, landed cost, insurance, credit, assistance to claim, price with duty advantage.",
+                    tool: "Tool 03: Market Entry Sheet",
+                  },
+                  {
+                    num: "Phase 4",
+                    time: "22 Jan - 28 Feb",
+                    title: "The buyer",
+                    action:
+                      "Buyer Questionnaire. One-page offer, pitch (in person); buyer meetings for each sector via Indian Missions (8-19 Feb); closing session.",
+                    tool: "Tool 04: First-Shipment Plan",
+                  },
+                ].map((phase, idx) => (
+                  <ScrollReveal
+                    key={idx}
+                    delay={idx * 0.1}
+                    direction="up"
+                    className="h-full"
                   >
                     <div
-                      className="absolute top-0 left-0 w-full h-[4px]"
-                      style={{ backgroundColor: "#004B87" }}
-                    ></div>
+                      className="bg-white rounded-3xl border border-gray-200 h-full flex flex-col relative overflow-hidden transition-all duration-300 cursor-default"
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.transform = "translateY(-5px)";
+                        e.currentTarget.style.borderColor = "#004B87";
+                        e.currentTarget.style.boxShadow = `0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0, 75, 135, 0.05)`;
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.borderColor = "#e5e7eb";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    >
+                      <div
+                        className="absolute top-0 left-0 w-full h-[4px]"
+                        style={{ backgroundColor: "#004B87" }}
+                      ></div>
 
-                    <div className="p-6 md:p-10 flex flex-col h-full">
-                      <div className="flex justify-between items-center mb-6">
-                        <span className="font-black px-4 py-1.5 rounded-full text-[0.85rem] tracking-[1px] uppercase bg-[#004B87]/5 text-[#004B87]">
-                          {phase.num}
-                        </span>
-                        <span className="text-[#004B87]/70 font-bold text-[0.85rem]">
-                          {phase.time}
-                        </span>
-                      </div>
-
-                      <h3 className="font-black text-[#004B87] mb-6 text-[1.4rem] tracking-[-0.3px] leading-[1.3]">
-                        {phase.title}
-                      </h3>
-
-                      <div className="mb-6 grow">
-                        <span className="block font-bold uppercase mb-2 text-[0.75rem] tracking-[1px] text-gray-500">
-                          What Happens
-                        </span>
-                        <p className="text-gray-600 m-0 text-[0.95rem] leading-[1.7]">
-                          {phase.action}
-                        </p>
-                      </div>
-
-                      <div className="mt-auto p-4 rounded-xl flex items-center gap-4 border border-[#004B87]/10 bg-[#004B87]/5">
-                        <div className="p-2 bg-white rounded-full shadow-sm text-[#004B87]">
-                          <CheckCircle2 size={20} />
-                        </div>
-                        <div>
-                          <span className="block font-bold uppercase mb-1 text-[0.7rem] tracking-[1px] text-[#004B87]/70">
-                            You Leave With
+                      <div className="p-6 md:p-10 flex flex-col h-full">
+                        <div className="flex justify-between items-center mb-6">
+                          <span className="font-black px-4 py-1.5 rounded-full text-[0.85rem] tracking-[1px] uppercase bg-[#004B87]/5 text-[#004B87]">
+                            {phase.num}
                           </span>
-                          <strong className="text-[#004B87] block text-[0.95rem]">
-                            {phase.tool}
-                          </strong>
+                          <span className="text-[#004B87]/70 font-bold text-[0.85rem]">
+                            {phase.time}
+                          </span>
+                        </div>
+
+                        <h3 className="font-black text-[#004B87] mb-6 text-[1.4rem] tracking-[-0.3px] leading-[1.3]">
+                          {phase.title}
+                        </h3>
+
+                        <div className="mb-6 grow">
+                          <span className="block font-bold uppercase mb-2 text-[0.75rem] tracking-[1px] text-gray-500">
+                            What Happens
+                          </span>
+                          <p className="text-gray-600 m-0 text-[0.95rem] leading-[1.7]">
+                            {phase.action}
+                          </p>
+                        </div>
+
+                        <div className="mt-auto p-4 rounded-xl flex items-center gap-4 border border-[#004B87]/10 bg-[#004B87]/5">
+                          <div className="p-2 bg-white rounded-full shadow-sm text-[#004B87]">
+                            <CheckCircle2 size={20} />
+                          </div>
+                          <div>
+                            <span className="block font-bold uppercase mb-1 text-[0.7rem] tracking-[1px] text-[#004B87]/70">
+                              You Leave With
+                            </span>
+                            <strong className="text-[#004B87] block text-[0.95rem]">
+                              {phase.tool}
+                            </strong>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                  </ScrollReveal>
+                ))}
+              </div>
 
             {/* Footer Note */}
             <div className="text-center mt-16 pt-8">
