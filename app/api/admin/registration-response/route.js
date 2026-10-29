@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Application from "../../../models/ApplicationModel"; 
-import connectDB from "../../../lib/db"; // 🔥 Yahan tera custom DB connection aa gaya (Path apne folder structure ke hisaab se check kar lena)
+import connectDB from "../../../../lib/db"; // 🔥 Yahan tera custom DB connection aa gaya (Path apne folder structure ke hisaab se check kar lena)
 
 // GET function me 'req' pass karne se Next.js isko automatically dynamic maan leta hai
 export async function GET(req) {
