@@ -1,36 +1,34 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
 import Application from "../../../models/ApplicationModel"; 
-
-// 🔥 Yahan se humne 'export const dynamic = ...' wali line hata di hai
+import connectDB from "../../../lib/db"; // 🔥 Yahan tera custom DB connection aa gaya (Path apne folder structure ke hisaab se check kar lena)
 
 // GET function me 'req' pass karne se Next.js isko automatically dynamic maan leta hai
 export async function GET(req) {
   try {
-    // Dummy read taaki Next.js is API ko hamesha runtime pe chalaye (build time pe nahi)
+    // Dummy read taaki Next.js is API ko hamesha runtime pe chalaye (build time static cache se bache)
     const url = req.url; 
 
-    const MONGODB_URI = process.env.MONGODB_URI;
+    // 1. Apni centralized helper se Database connect karo
+    await connectDB();
 
-    // Safety check taaki undefined pass na ho (Build fail na ho)
-    if (!MONGODB_URI) {
-      console.warn("MONGODB_URI is missing, skipping DB connect during build.");
-      return NextResponse.json({ success: false, message: "Database Config Error" }, { status: 500 });
-    }
-
-    // Database connection check
-    if (mongoose.connection.readyState < 1) {
-      await mongoose.connect(MONGODB_URI);
-    }
-
-    // Saari applications fetch karo, sabse nayi sabse upar (createdAt: -1)
+    // 2. Saari applications fetch karo, sabse nayi sabse upar (createdAt: -1)
     const applications = await Application.find({}).sort({ createdAt: -1 });
 
-    return NextResponse.json({ success: true, data: applications }, { status: 200 });
+    // 3. Data return karo
+    return NextResponse.json(
+      { success: true, data: applications }, 
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Admin Fetch Error:", error);
+    
+    // Proper error response frontend ke liye
     return NextResponse.json(
-      { success: false, message: "Failed to fetch applications" },
+      { 
+        success: false, 
+        message: "Failed to fetch applications",
+        error: error.message
+      },
       { status: 500 }
     );
   }
