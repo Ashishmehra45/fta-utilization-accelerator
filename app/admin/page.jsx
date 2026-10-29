@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { 
   Search, Eye, X, Building2, User, LayoutGrid, Package, 
-  Globe, MessageSquare, Download, RefreshCw, Printer
+  Globe, MessageSquare, Download, RefreshCw, Printer, FileText
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -129,7 +129,9 @@ export default function AdminDashboard() {
                       </td>
                       <td className="px-6 py-4">
                         <p className="font-bold text-gray-900 text-sm m-0">{app.firmName}</p>
-                        <p className="text-xs text-gray-500 m-0 mt-0.5">{app.district} • {app.enterpriseSize}</p>
+                        <p className="text-xs text-gray-500 m-0 mt-0.5">
+                          {app.district === "Other MP District" ? app.otherDistrictName : app.district} • {app.enterpriseSize}
+                        </p>
                       </td>
                       <td className="px-6 py-4">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-purple-50 text-purple-700 text-xs font-bold rounded-full border border-purple-100">
@@ -189,7 +191,7 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            {/* Modal Scrollable Body - FIX: Replaced inline style with Tailwind classes for proper printing */}
+            {/* Modal Scrollable Body */}
             <div className="p-8 overflow-y-auto max-h-[calc(90vh-85px)] print:max-h-none print:overflow-visible print:h-auto print:p-2">
               
               <div className="flex flex-col gap-8 print:gap-6">
@@ -207,7 +209,13 @@ export default function AdminDashboard() {
                       <TabularRow label="GSTIN" value={selectedApp.gstin} />
                       <TabularRow label="IEC Code" value={selectedApp.iecPending ? "Applied (Pending)" : selectedApp.iecCode} />
                       <TabularRow label="Udyam Number" value={selectedApp.udyamNumber || "N/A"} />
-                      <TabularRow label="District" value={selectedApp.district} />
+                      
+                      {/* 🔥 UPDATE: Handle Other District logic */}
+                      <TabularRow 
+                        label="District" 
+                        value={selectedApp.district === "Other MP District" ? `${selectedApp.otherDistrictName} (Other)` : selectedApp.district} 
+                      />
+
                       <TabularRow label="Address" value={selectedApp.address} />
                       <TabularRow label="Website" value={selectedApp.website || "N/A"} />
                       <TabularRow label="Export Council" value={selectedApp.exportCouncil || "N/A"} />
@@ -310,6 +318,36 @@ export default function AdminDashboard() {
                     "{selectedApp.stoppingFactor}"
                   </p>
                 </div>
+
+                {/* 🔥 6. UPLOADED DOCUMENTS TABLE (NEW) */}
+                {selectedApp.documents && selectedApp.documents.length > 0 && (
+                  <div className="print:break-inside-avoid">
+                    <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-purple-500 pb-2 inline-block print:border-black">
+                      <FileText size={20} className="text-purple-600 print:text-black" /> Uploaded Documents
+                    </h4>
+                    <table className="w-full text-sm text-left border-collapse border border-gray-300">
+                      <tbody>
+                        {selectedApp.documents.map((doc, index) => (
+                          <tr key={index} className="border-b border-gray-300">
+                            <th className="w-1/3 bg-gray-50 border-r border-gray-300 p-3 text-gray-700 font-semibold align-middle print:bg-gray-100">
+                              Document {index + 1}
+                            </th>
+                            <td className="w-2/3 p-3 text-gray-900 align-middle">
+                              <a 
+                                href={doc.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:text-blue-800 underline font-medium print:text-black print:no-underline"
+                              >
+                                {doc.name || `View File ${index + 1}`}
+                              </a>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
 
               </div>
             </div>

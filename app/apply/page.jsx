@@ -23,11 +23,16 @@ import {
   AlertCircle,
   ArrowRight,
   Check,
+  RefreshCw,
+  X,
 } from "lucide-react";
 
-// IMPORT HEADER AND FOOTER (Path apne folder structure ke hisaab se adjust kar lena)
+// IMPORT HEADER AND FOOTER
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+
+// CLOUDINARY UPLOAD UTILITY (Ensure this file exists as we created earlier)
+import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
 
 // --- Scroll & Animations ---
 const ScrollReveal = ({ children, className, delay = 0, direction = "up" }) => {
@@ -50,8 +55,7 @@ const ScrollReveal = ({ children, className, delay = 0, direction = "up" }) => {
   );
 };
 
-// --- 🔥 THE FIX: Moved FormSection OUTSIDE of ApplyPage component ---
-// Reusable Premium Form Section Wrapper
+// --- Reusable Premium Form Section Wrapper ---
 const FormSection = ({ icon, title, color, children }) => (
   <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
     <div
@@ -80,6 +84,9 @@ export default function ApplyPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [refNumber, setRefNumber] = useState("");
 
+  // NEW: State for Cloudinary file uploads
+  const [isUploadingDocs, setIsUploadingDocs] = useState(false);
+
   // --- FORM DATA STATE (BACKEND CONNECTION) ---
   const [formData, setFormData] = useState({
     // Step 1
@@ -91,6 +98,7 @@ export default function ApplyPage() {
     udyamNumber: "",
     firmType: "",
     district: "",
+    otherDistrictName: "", // 🔥 NEW: For custom district
     address: "",
     website: "",
     exportCouncil: "",
@@ -119,6 +127,8 @@ export default function ApplyPage() {
     statusHolder: "",
     // Step 6
     stoppingFactor: "",
+    // Step 7
+    documents: [], // 🔥 NEW: Array to store Cloudinary URLs
   });
 
   // --- MULTI-STEP LOGIC ---
@@ -139,7 +149,6 @@ export default function ApplyPage() {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    // Certifications Array Checkbox Logic
     if (name === "certifications") {
       let updatedCerts = [...formData.certifications];
       if (checked) updatedCerts.push(value);
@@ -154,7 +163,7 @@ export default function ApplyPage() {
     });
   };
 
-  // Handler for nested objects (like primaryContact, primaryProduct)
+  // Handler for nested objects
   const handleNestedChange = (e, category) => {
     const { name, value } = e.target;
     setFormData({
@@ -163,13 +172,62 @@ export default function ApplyPage() {
     });
   };
 
-  // Handler for array of objects (like additionalProducts)
+  // Handler for array of objects
   const handleArrayChange = (e, index) => {
     const { name, value } = e.target;
     const updatedArray = [...formData.additionalProducts];
     updatedArray[index] = { ...updatedArray[index], [name]: value };
     setFormData({ ...formData, additionalProducts: updatedArray });
   };
+
+  // --- 🔥 NEW: CLOUDINARY FILE UPLOAD HANDLER ---
+  const handleFileUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+
+    setIsUploadingDocs(true);
+    const uploadedDocs = [...formData.documents];
+
+    for (const file of files) {
+      if (file.size > 10 * 1024 * 1024) {
+        Swal.fire({
+          title: "File too large",
+          text: `${file.name} is over 10MB`,
+          icon: "warning",
+        });
+        continue;
+      }
+      try {
+        const fileUrl = await uploadToCloudinary(file);
+        if (fileUrl) {
+          uploadedDocs.push({ name: file.name, url: fileUrl });
+        } else {
+          Swal.fire({
+            title: "Upload Failed",
+            text: `Could not upload ${file.name}`,
+            icon: "error",
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: "Upload Failed",
+          text: `Error uploading ${file.name}`,
+          icon: "error",
+        });
+      }
+    }
+
+    setFormData({ ...formData, documents: uploadedDocs });
+    setIsUploadingDocs(false);
+  };
+
+  const removeDocument = (indexToRemove) => {
+    const updatedDocs = formData.documents.filter(
+      (_, index) => index !== indexToRemove,
+    );
+    setFormData({ ...formData, documents: updatedDocs });
+  };
+  // ----------------------------------------------
 
   // Validate current step before moving next
   const handleNext = () => {
@@ -198,7 +256,7 @@ export default function ApplyPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // FINAL SUBMIT HANDLER (CONNECTING TO API)
+  // FINAL SUBMIT HANDLER
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -240,7 +298,6 @@ export default function ApplyPage() {
     }
   };
 
-  // Premium Tailwind Input Styles
   const inputStyle =
     "w-full bg-gray-50 text-gray-900 px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#004B87] focus:border-transparent transition-all placeholder:text-gray-400";
   const selectStyle =
@@ -251,14 +308,12 @@ export default function ApplyPage() {
       <Header />
 
       <main>
-        {/* ------------------------------------------------------------- */}
-        {/* INNER PAGE HERO SECTION (WHITE/LIGHT THEME)                   */}
-        {/* ------------------------------------------------------------- */}
+        {/* HERO SECTION */}
         <section className="relative flex flex-col justify-center overflow-hidden bg-white border-b border-gray-100 min-h-[35vh]">
           <div className="absolute top-0 left-0 w-full h-full z-0">
             <img
               src="/back.png"
-              alt="Madhya Pradesh Industry Background"
+              alt="MP Industry Background"
               className="w-full h-full object-cover opacity-10"
             />
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/70 to-white" />
@@ -269,33 +324,27 @@ export default function ApplyPage() {
               <span className="inline-block bg-[#004B87]/10 text-[#004B87] px-4 py-2 mb-4 font-bold uppercase tracking-[1px] text-[12px] rounded-full">
                 Cohort 1 Enrollment
               </span>
-
               <h1 className="font-black text-gray-900 mb-4 text-[clamp(2rem,4vw,3.5rem)] tracking-[-1px] leading-tight">
                 Apply to the Accelerator
               </h1>
-
               <p className="text-gray-600 font-medium mx-auto m-0 text-[1.05rem] max-w-[700px] leading-[1.6]">
                 Fill the form below or bring it to the FTA Helpdesk at the MPIDC
-                Export Cell. Keep your Importer-Exporter Code (IEC) and product
-                HS code at hand.
+                Export Cell.
               </p>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* ------------------------------------------------------------- */}
-        {/* MULTI-STEP WIZARD FORM AREA                                   */}
-        {/* ------------------------------------------------------------- */}
+        {/* WIZARD FORM AREA */}
         <section className="py-12 px-4">
           <div className="w-full max-w-screen-lg mx-auto py-2">
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
                 <div className="w-full mx-auto max-w-[900px]">
-                  {/* NEW HORIZONTAL STEPPER WITH HEADINGS */}
+                  {/* DESKTOP STEPPER */}
                   <div className="mb-12 hidden md:block">
                     <div className="flex justify-between relative">
                       <div className="absolute top-[18px] left-[5%] right-[5%] h-[3px] bg-gray-200 z-0 rounded-full"></div>
-
                       {stepTitles.map((title, index) => {
                         const stepNum = index + 1;
                         const isCompleted = stepNum < currentStep;
@@ -318,21 +367,13 @@ export default function ApplyPage() {
                                 ></div>
                               )}
                               <div
-                                className={`w-[40px] h-[40px] rounded-full flex items-center justify-center font-bold text-[14px] transition-all duration-500 z-20 
-                                  ${
-                                    isCompleted
-                                      ? "bg-green-500 text-white shadow-md"
-                                      : isActive
-                                        ? "bg-[#004B87] text-white shadow-md ring-4 ring-[#004B87]/20 scale-110"
-                                        : "bg-white text-gray-400 border-2 border-gray-200"
-                                  }`}
+                                className={`w-[40px] h-[40px] rounded-full flex items-center justify-center font-bold text-[14px] transition-all duration-500 z-20 ${isCompleted ? "bg-green-500 text-white shadow-md" : isActive ? "bg-[#004B87] text-white shadow-md ring-4 ring-[#004B87]/20 scale-110" : "bg-white text-gray-400 border-2 border-gray-200"}`}
                               >
                                 {isCompleted ? <Check size={20} /> : stepNum}
                               </div>
                             </div>
                             <span
-                              className={`mt-3 text-[11px] font-bold uppercase tracking-[0.5px] text-center transition-colors duration-300
-                              ${isCompleted ? "text-green-600" : isActive ? "text-[#004B87]" : "text-gray-400"}`}
+                              className={`mt-3 text-[11px] font-bold uppercase tracking-[0.5px] text-center transition-colors duration-300 ${isCompleted ? "text-green-600" : isActive ? "text-[#004B87]" : "text-gray-400"}`}
                             >
                               {title}
                             </span>
@@ -342,7 +383,7 @@ export default function ApplyPage() {
                     </div>
                   </div>
 
-                  {/* MOBILE PROGRESS BAR (Fallback for small screens) */}
+                  {/* MOBILE STEPPER */}
                   <div className="mb-10 pb-4 md:hidden">
                     <div className="flex justify-between items-end mb-3">
                       <span className="font-bold text-[#004B87] uppercase text-[12px] tracking-[1px]">
@@ -492,6 +533,7 @@ export default function ApplyPage() {
                           </select>
                         </div>
 
+                        {/* 🔥 District with Conditional Option */}
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             District <span className="text-red-500">*</span>
@@ -514,7 +556,27 @@ export default function ApplyPage() {
                           </select>
                         </div>
 
-                        <div className="md:col-span-2">
+                        {formData.district === "Other MP District" ? (
+                          <div>
+                            <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
+                              Specify District{" "}
+                              <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="otherDistrictName"
+                              value={formData.otherDistrictName}
+                              onChange={handleChange}
+                              required
+                              className={inputStyle}
+                              placeholder="Enter your district name"
+                            />
+                          </div>
+                        ) : (
+                          <div className="hidden md:block"></div>
+                        )}
+
+                        <div className="md:col-span-2 mt-2">
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Factory or office address{" "}
                             <span className="text-red-500">*</span>
@@ -761,8 +823,7 @@ export default function ApplyPage() {
                                     sectorTrack: track.id,
                                   })
                                 }
-                                className={`p-5 rounded-2xl border-2 flex items-center gap-4 transition-all cursor-pointer select-none
-                                  ${formData.sectorTrack === track.id ? `${track.activeColor} shadow-md` : "bg-gray-50 border-gray-200 hover:border-purple-300"}`}
+                                className={`p-5 rounded-2xl border-2 flex items-center gap-4 transition-all cursor-pointer select-none ${formData.sectorTrack === track.id ? `${track.activeColor} shadow-md` : "bg-gray-50 border-gray-200 hover:border-purple-300"}`}
                               >
                                 <div
                                   className={`p-2 rounded-full text-white flex items-center justify-center w-[44px] h-[44px] ${formData.sectorTrack === track.id ? track.iconColor : "bg-gray-400"}`}
@@ -777,7 +838,6 @@ export default function ApplyPage() {
                               </div>
                             ))}
                           </div>
-                          {/* Hidden input to ensure required validation */}
                           <input
                             type="text"
                             name="sectorTrack"
@@ -844,10 +904,6 @@ export default function ApplyPage() {
                               (Optional)
                             </span>
                           </p>
-                          <p className="text-gray-500 mb-4 text-[0.85rem]">
-                            The plan is built for the first shipment of one of
-                            them.
-                          </p>
                           <div className="flex flex-col gap-4">
                             <div className="flex flex-col md:flex-row gap-3">
                               <input
@@ -898,58 +954,30 @@ export default function ApplyPage() {
                             <span className="text-red-500">*</span>
                           </label>
                           <div className="flex flex-col gap-4 bg-gray-50 p-5 rounded-2xl border border-gray-200">
-                            <label className="flex items-center gap-3 cursor-pointer select-none m-0">
-                              <input
-                                type="radio"
-                                name="madeInMp"
-                                value="Yes, in our own unit"
-                                onChange={handleChange}
-                                className="w-4 h-4 text-[#d97706] focus:ring-[#d97706] border-gray-300"
-                                required
-                              />
-                              <span className="text-gray-700 font-medium">
-                                Yes, in our own unit
-                              </span>
-                            </label>
-                            <label className="flex items-center gap-3 cursor-pointer select-none m-0">
-                              <input
-                                type="radio"
-                                name="madeInMp"
-                                value="Yes, by another unit in the State"
-                                onChange={handleChange}
-                                className="w-4 h-4 text-[#d97706] focus:ring-[#d97706] border-gray-300"
-                                required
-                              />
-                              <span className="text-gray-700 font-medium">
-                                Yes, by another unit in the State
-                              </span>
-                            </label>
-                            <label className="flex items-center gap-3 cursor-pointer select-none m-0">
-                              <input
-                                type="radio"
-                                name="madeInMp"
-                                value="Partly"
-                                onChange={handleChange}
-                                className="w-4 h-4 text-[#d97706] focus:ring-[#d97706] border-gray-300"
-                                required
-                              />
-                              <span className="text-gray-700 font-medium">
-                                Partly
-                              </span>
-                            </label>
-                            <label className="flex items-center gap-3 cursor-pointer select-none m-0">
-                              <input
-                                type="radio"
-                                name="madeInMp"
-                                value="No"
-                                onChange={handleChange}
-                                className="w-4 h-4 text-[#d97706] focus:ring-[#d97706] border-gray-300"
-                                required
-                              />
-                              <span className="text-gray-700 font-medium">
-                                No
-                              </span>
-                            </label>
+                            {[
+                              "Yes, in our own unit",
+                              "Yes, by another unit in the State",
+                              "Partly",
+                              "No",
+                            ].map((opt) => (
+                              <label
+                                key={opt}
+                                className="flex items-center gap-3 cursor-pointer select-none m-0"
+                              >
+                                <input
+                                  type="radio"
+                                  name="madeInMp"
+                                  value={opt}
+                                  onChange={handleChange}
+                                  checked={formData.madeInMp === opt}
+                                  className="w-4 h-4 text-[#d97706] focus:ring-[#d97706] border-gray-300"
+                                  required
+                                />
+                                <span className="text-gray-700 font-medium">
+                                  {opt}
+                                </span>
+                              </label>
+                            ))}
                           </div>
                         </div>
 
@@ -962,7 +990,7 @@ export default function ApplyPage() {
                             value={formData.importedInputs}
                             onChange={handleChange}
                             className={`${inputStyle} resize-none grow min-h-[140px]`}
-                            placeholder="e.g., steel plate, fabric, API, imported sugar. Leave blank if none."
+                            placeholder="e.g., steel plate, fabric, API, imported sugar."
                           ></textarea>
                         </div>
 
@@ -1240,7 +1268,7 @@ export default function ApplyPage() {
                       </FormSection>
                     </div>
 
-                    {/* STEP 7: DECLARATION */}
+                    {/* STEP 7: DECLARATION & UPLOAD */}
                     <div
                       id="step-7"
                       className={currentStep === 7 ? "block" : "hidden"}
@@ -1304,6 +1332,7 @@ export default function ApplyPage() {
                           </label>
                         </div>
 
+                        {/* 🔥 NEW: CLOUDINARY UPLOAD SECTION */}
                         <div className="md:col-span-2 mt-6 pt-6 border-t border-gray-100">
                           <label className="block font-bold text-gray-900 mb-2 text-[1rem]">
                             Documents{" "}
@@ -1316,31 +1345,77 @@ export default function ApplyPage() {
                             product catalogue (Up to 10 MB each).
                           </p>
 
-                          <label className="flex flex-col items-center justify-center p-10 rounded-2xl bg-gray-50 border-2 border-dashed border-gray-300 hover:border-gray-500 hover:bg-gray-100 transition-all cursor-pointer group">
-                            <UploadCloud
-                              size={44}
-                              className="text-gray-400 mb-4 group-hover:text-gray-600 transition-colors"
-                            />
-                            <h6 className="font-bold text-gray-900 mb-1">
-                              Click to upload or drag & drop
-                            </h6>
-                            <p className="text-gray-500 m-0 text-[0.85rem]">
-                              PDF, PNG, JPG up to 10MB
-                            </p>
+                          <label
+                            className={`flex flex-col items-center justify-center p-10 rounded-2xl bg-gray-50 border-2 border-dashed border-gray-300 transition-all cursor-pointer group ${isUploadingDocs ? "opacity-60 pointer-events-none" : "hover:border-gray-500 hover:bg-gray-100"}`}
+                          >
+                            {isUploadingDocs ? (
+                              <>
+                                <RefreshCw
+                                  size={44}
+                                  className="text-[#004B87] mb-4 animate-spin"
+                                />
+                                <h6 className="font-bold text-[#004B87] mb-1">
+                                  Uploading securely...
+                                </h6>
+                              </>
+                            ) : (
+                              <>
+                                <UploadCloud
+                                  size={44}
+                                  className="text-gray-400 mb-4 group-hover:text-gray-600 transition-colors"
+                                />
+                                <h6 className="font-bold text-gray-900 mb-1">
+                                  Click to upload files
+                                </h6>
+                                <p className="text-gray-500 m-0 text-[0.85rem]">
+                                  PDF, PNG, JPG up to 10MB
+                                </p>
+                              </>
+                            )}
                             <input
                               type="file"
                               multiple
+                              accept=".pdf,.png,.jpg,.jpeg"
+                              onChange={handleFileUpload}
+                              disabled={isUploadingDocs}
                               className="hidden"
-                              id="fileUpload"
                             />
                           </label>
+
+                          {/* Uploaded Files List */}
+                          {formData.documents.length > 0 && (
+                            <div className="mt-4 flex flex-col gap-3">
+                              {formData.documents.map((doc, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-xl"
+                                >
+                                  <div className="flex items-center gap-3 overflow-hidden">
+                                    <CheckCircle2
+                                      size={18}
+                                      className="text-green-600 shrink-0"
+                                    />
+                                    <span className="text-sm font-medium text-green-800 truncate">
+                                      {doc.name}
+                                    </span>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeDocument(idx)}
+                                    className="text-gray-400 hover:text-red-500 transition-colors p-1"
+                                  >
+                                    <X size={18} />
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </FormSection>
                     </div>
 
                     {/* WIZARD NAVIGATION BUTTONS */}
                     <div className="flex justify-between items-center mt-8 pt-8 border-t border-gray-200">
-                      {/* Back Button */}
                       <div>
                         {currentStep > 1 && (
                           <button
@@ -1352,51 +1427,28 @@ export default function ApplyPage() {
                           </button>
                         )}
                       </div>
-
-                      {/* Next / Submit Button */}
                       <div>
                         {currentStep < totalSteps ? (
                           <button
                             type="button"
                             onClick={handleNext}
-                            className="font-bold text-white flex items-center gap-2 px-8 py-3 rounded-full  bg-[#004B87] tracking-[0.5px] hover:-translate-y-1 hover:shadow-xl transition-all"
+                            className="font-bold text-white flex items-center gap-2 px-8 py-3 rounded-full bg-[#004B87] tracking-[0.5px] hover:-translate-y-1 hover:shadow-xl transition-all"
                           >
                             Next Step <ArrowRight size={18} />
                           </button>
                         ) : (
                           <button
                             type="submit"
-                            disabled={isSubmitting}
+                            disabled={isSubmitting || isUploadingDocs}
                             className="font-black text-white uppercase inline-flex justify-center items-center gap-2 px-8 py-3 rounded-full shadow-lg bg-[#1868e0] tracking-[1px] hover:-translate-y-1 hover:shadow-xl transition-all disabled:opacity-70 disabled:hover:translate-y-0"
                           >
                             {isSubmitting ? (
                               <>
-                                <svg
-                                  className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <circle
-                                    className="opacity-25"
-                                    cx="12"
-                                    cy="12"
-                                    r="10"
-                                    stroke="currentColor"
-                                    strokeWidth="4"
-                                  ></circle>
-                                  <path
-                                    className="opacity-75"
-                                    fill="currentColor"
-                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                  ></path>
-                                </svg>
+                                <RefreshCw className="animate-spin h-5 w-5 text-white" />
                                 Processing...
                               </>
                             ) : (
-                              <>
-                                Submit Application
-                              </>
+                              <>Submit Application</>
                             )}
                           </button>
                         )}
@@ -1405,9 +1457,7 @@ export default function ApplyPage() {
                   </form>
                 </div>
               ) : (
-                /* ------------------------------------------------------------- */
-                /* SUCCESS CELEBRATION SCREEN                                    */
-                /* ------------------------------------------------------------- */
+                /* SUCCESS CELEBRATION SCREEN */
                 <motion.div
                   key="success"
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -1424,7 +1474,6 @@ export default function ApplyPage() {
                     Your application for the Madhya Pradesh FTA Accelerator,
                     cohort 1, has been received.
                   </p>
-
                   <div className="bg-gray-50 p-6 rounded-2xl inline-block w-full mb-10 border border-gray-100">
                     <p className="text-gray-500 font-bold uppercase mb-2 text-[12px] tracking-[1px]">
                       Your Reference Number
@@ -1433,14 +1482,12 @@ export default function ApplyPage() {
                       {refNumber}
                     </h3>
                   </div>
-
                   <p className="text-gray-600 mb-10 mx-auto leading-[1.7] text-[1rem]">
                     The cohort lists are published on this Portal on{" "}
                     <strong className="text-gray-900">30 November 2026</strong>.
                     You will receive further updates from the Export Cell via
                     email.
                   </p>
-
                   <div className="flex flex-col gap-4 mt-8 pt-8 border-t border-gray-100">
                     <p className="text-gray-500 font-bold m-0 text-[0.9rem]">
                       Questions? Contact Helpdesk:
@@ -1462,8 +1509,7 @@ export default function ApplyPage() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
-}  
+}

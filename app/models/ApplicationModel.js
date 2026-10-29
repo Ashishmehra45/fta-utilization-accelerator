@@ -1,16 +1,23 @@
 import mongoose from 'mongoose';
 
-// Pehle define karte hain ki data kaisa dikhega (Schema)
 const applicationSchema = new mongoose.Schema({
   // STEP 1: Firm Details
   firmName: { type: String, required: true },
-  iecCode: { type: String, required: true },
+  
+  // iecCode se 'required: true' hata diya hai, kyunki agar user "iecPending" check karega 
+  // toh wo khali aayega aur MongoDB error phek dega.
+  iecCode: { type: String }, 
   iecPending: { type: Boolean, default: false },
+  
   gstin: { type: String, required: true },
   enterpriseSize: { type: String, required: true },
   udyamNumber: { type: String },
   firmType: { type: String, required: true },
+  
   district: { type: String, required: true },
+  // 🔥 NAYA FIELD: Agar user "Other MP District" select karta hai, toh city ka naam yahan aayega
+  otherDistrictName: { type: String }, 
+  
   address: { type: String, required: true },
   website: { type: String },
   exportCouncil: { type: String },
@@ -55,13 +62,18 @@ const applicationSchema = new mongoose.Schema({
   // STEP 6: Final Question
   stoppingFactor: { type: String, required: true },
 
+  // 🔥 NAYA FIELD: Cloudinary Documents (Jo pichle step me banaya tha)
+  documents: [{
+    name: { type: String },
+    url: { type: String }
+  }],
+
   // STEP 7: System Details
   referenceNumber: { type: String, required: true, unique: true },
-  status: { type: String, default: "Pending" }, // Admin ke liye useful
+  status: { type: String, default: "Pending" }, 
   createdAt: { type: Date, default: Date.now }
 });
 
-// Agar model pehle se bana hai to wahi use karo (Next.js hot reload problem solve karne ke liye)
 const Application = mongoose.models.Application || mongoose.model('Application', applicationSchema);
 
 export default Application;
