@@ -1359,7 +1359,7 @@ export default function ApplyPage() {
                           <button
                             type="button"
                             onClick={handleNext}
-                            className="font-black text-white flex items-center gap-2 px-8 py-3 rounded-full shadow-lg bg-[#004B87] tracking-[0.5px] hover:-translate-y-1 hover:shadow-xl transition-all"
+                            className="font-bold text-white flex items-center gap-2 px-8 py-3 rounded-full  bg-[#004B87] tracking-[0.5px] hover:-translate-y-1 hover:shadow-xl transition-all"
                           >
                             Next Step <ArrowRight size={18} />
                           </button>
@@ -1367,7 +1367,7 @@ export default function ApplyPage() {
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="font-black text-white uppercase inline-flex justify-center items-center gap-2 px-8 py-3 rounded-full shadow-lg bg-[#10b981] tracking-[1px] hover:-translate-y-1 hover:shadow-xl transition-all disabled:opacity-70 disabled:hover:translate-y-0"
+                            className="font-black text-white uppercase inline-flex justify-center items-center gap-2 px-8 py-3 rounded-full shadow-lg bg-[#1868e0] tracking-[1px] hover:-translate-y-1 hover:shadow-xl transition-all disabled:opacity-70 disabled:hover:translate-y-0"
                           >
                             {isSubmitting ? (
                               <>
@@ -1395,7 +1395,7 @@ export default function ApplyPage() {
                               </>
                             ) : (
                               <>
-                                <Send size={20} /> Submit Application
+                                Submit Application
                               </>
                             )}
                           </button>
