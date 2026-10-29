@@ -441,24 +441,10 @@ export default function ApplyPage() {
                             value={formData.iecCode}
                             onChange={handleChange}
                             maxLength={10}
-                            required={!formData.iecPending}
-                            disabled={formData.iecPending}
-                            className={`${inputStyle} mb-3 disabled:opacity-50`}
-                            placeholder="10-digit code"
+                            required
+                            className={inputStyle}
+                            placeholder="Enter 10-digit code or type 'N/A'"
                           />
-                          <label className="flex items-center gap-2 cursor-pointer select-none">
-                            <input
-                              type="checkbox"
-                              name="iecPending"
-                              checked={formData.iecPending}
-                              onChange={handleChange}
-                              id="iecPending"
-                              className="w-4 h-4 rounded border-gray-300 text-[#004B87] focus:ring-[#004B87]"
-                            />
-                            <span className="text-gray-600 font-medium text-[0.85rem]">
-                              Applied for; number to follow
-                            </span>
-                          </label>
                         </div>
 
                         <div>

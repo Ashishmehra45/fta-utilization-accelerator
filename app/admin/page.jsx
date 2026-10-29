@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { 
   Search, Eye, X, Building2, User, LayoutGrid, Package, 
-  Globe, MessageSquare, Download, RefreshCw, Printer, FileText
+  Globe, MessageSquare, Download, RefreshCw, Printer, FileText,
+  FileSpreadsheet
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -32,23 +33,109 @@ export default function AdminDashboard() {
   }, []);
 
   const filteredApps = applications.filter((app) => 
-    app.firmName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    app.referenceNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    app.sectorTrack.toLowerCase().includes(searchTerm.toLowerCase())
+    app.firmName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    app.referenceNumber?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    app.sectorTrack?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleDownloadPDF = () => {
     window.print();
   };
 
+  // --- EXCEL / CSV EXPORT LOGIC ---
+  const handleExportExcel = () => {
+    const escapeCSV = (str) => {
+      if (str === null || str === undefined) return '""';
+      const stringVal = String(str);
+      if (stringVal.includes('"') || stringVal.includes(',') || stringVal.includes('\n')) {
+        return `"${stringVal.replace(/"/g, '""')}"`;
+      }
+      return stringVal;
+    };
+
+    const headers = [
+      "Reference No", "Date", "Firm Name", "IEC Code", "GSTIN", "Enterprise Size", "Udyam Number", 
+      "Firm Type", "District", "Address", "Website", "Export Council", 
+      "Primary Contact Name", "Primary Contact Desig", "Primary Contact Mobile", "Primary Contact Email",
+      "Secondary Contact Name", "Secondary Contact Desig", "Secondary Contact Mobile", "Secondary Contact Email",
+      "Sector Track", "Primary Product Desc", "Primary Product HS", 
+      "Additional Product 1 Desc", "Additional Product 1 HS", 
+      "Additional Product 2 Desc", "Additional Product 2 HS",
+      "Made in MP", "Imported Inputs", "Certifications",
+      "Target Market", "Second Market", "Buyer Status", "Exported Before", "Exports FY25-26",
+      "Claimed FTA", "Trade Connect", "Status Holder", "Stopping Factor"
+    ];
+
+    const csvRows = [headers.join(",")];
+
+    filteredApps.forEach(app => {
+      const district = app.district === "Other MP District" ? app.otherDistrictName : app.district;
+      const certs = app.certifications ? app.certifications.join(', ') : '';
+      const addP1 = app.additionalProducts?.[0] || {};
+      const addP2 = app.additionalProducts?.[1] || {};
+
+      const row = [
+        app.referenceNumber,
+        new Date(app.createdAt).toLocaleDateString('en-IN'),
+        app.firmName,
+        app.iecCode || 'N/A', // Updated IEC logic
+        app.gstin,
+        app.enterpriseSize,
+        app.udyamNumber,
+        app.firmType,
+        district,
+        app.address,
+        app.website,
+        app.exportCouncil,
+        app.primaryContact?.name,
+        app.primaryContact?.designation,
+        app.primaryContact?.mobile,
+        app.primaryContact?.email,
+        app.secondaryContact?.name,
+        app.secondaryContact?.designation,
+        app.secondaryContact?.mobile,
+        app.secondaryContact?.email,
+        app.sectorTrack,
+        app.primaryProduct?.description,
+        app.primaryProduct?.hsCode,
+        addP1.description,
+        addP1.hsCode,
+        addP2.description,
+        addP2.hsCode,
+        app.madeInMp,
+        app.importedInputs,
+        certs,
+        app.targetMarket,
+        app.secondMarket,
+        app.buyerStatus,
+        app.exportedBefore,
+        app.exportsLastFy,
+        app.claimedFtaBefore,
+        app.tradeConnectRegistered,
+        app.statusHolder,
+        app.stoppingFactor
+      ].map(escapeCSV);
+
+      csvRows.push(row.join(","));
+    });
+
+    const blob = new Blob([csvRows.join("\n")], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "FTA_Applications.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    // Body gets white background during print
     <div className={`min-h-screen bg-gray-50 text-gray-900 font-sans ${selectedApp ? 'print:bg-white' : ''}`}>
       
-      {/* TOP NAVIGATION - Hidden during PDF print */}
+      {/* TOP NAVIGATION */}
       <header className="bg-[#004B87] text-white px-6 py-4 shadow-md flex justify-between items-center print:hidden">
         <div className="flex items-center gap-3">
-          <Building2 size={24} className="text-[#002A54]" />
+          <Building2 size={24} className="text-white" />
           <h1 className="font-black text-xl tracking-wide uppercase">FTA Admin Portal</h1>
         </div>
         <Link href="/" className="text-white/80 hover:text-white font-medium text-sm transition-colors flex items-center gap-2">
@@ -56,7 +143,7 @@ export default function AdminDashboard() {
         </Link>
       </header>
 
-      {/* MAIN DASHBOARD - Hidden during PDF print */}
+      {/* MAIN DASHBOARD */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 print:hidden">
         
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
@@ -65,20 +152,28 @@ export default function AdminDashboard() {
             <p className="text-gray-500 mt-1 font-medium">Review and manage FTA Accelerator enrollments</p>
           </div>
           
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <div className="relative w-full md:w-[300px]">
+          <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+            {/* Excel Download Button */}
+            <button 
+              onClick={handleExportExcel}
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 text-white font-bold text-sm rounded-lg hover:bg-emerald-700 transition-colors shadow-sm whitespace-nowrap"
+            >
+              <FileSpreadsheet size={18} /> Export Data
+            </button>
+
+            <div className="relative w-full md:w-[250px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input 
                 type="text" 
-                placeholder="Search by Firm, Ref No, Sector..." 
+                placeholder="Search Firm, Ref, Sector..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#004B87] shadow-sm text-sm"
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004B87] shadow-sm text-sm"
               />
             </div>
             <button 
               onClick={fetchApplications}
-              className="p-2.5 bg-white border border-gray-200 rounded-full text-gray-600 hover:text-[#004B87] hover:bg-gray-50 shadow-sm transition-all"
+              className="p-2.5 bg-white border border-gray-200 rounded-lg text-gray-600 hover:text-[#004B87] hover:bg-gray-50 shadow-sm transition-all"
               title="Refresh Data"
             >
               <RefreshCw size={18} className={loading ? "animate-spin" : ""} />
@@ -92,7 +187,7 @@ export default function AdminDashboard() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-gray-50/80 border-b border-gray-200">
-                  <th className="px-6 py-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Reference No.</th>
+                  <th className="px-6 py-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Ref No.</th>
                   <th className="px-6 py-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Date</th>
                   <th className="px-6 py-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Firm Details</th>
                   <th className="px-6 py-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Sector Track</th>
@@ -159,17 +254,13 @@ export default function AdminDashboard() {
         </div>
       </main>
 
-      {/* FULL DETAILS MODAL (TABULAR & PRINT READY) */}
+      {/* FULL DETAILS MODAL (STRICT A-G SEQUENCE & PRINT READY) */}
       {selectedApp && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 print:absolute print:inset-0 print:p-0 print:block print:bg-white print:overflow-visible">
-          {/* Backdrop - Hidden in print */}
           <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm print:hidden" onClick={() => setSelectedApp(null)}></div>
           
-          {/* Modal Content - Expands fully in print */}
-          {/* Removed fixed max heights and overflow hidden for print */}
           <div className="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 print:shadow-none print:rounded-none print:block print:w-full print:max-w-none print:overflow-visible">
             
-            {/* Modal Header */}
             <div className="flex items-center justify-between px-8 py-5 border-b border-gray-200 bg-gray-50 print:bg-white print:border-b-2 print:border-black print:pb-4">
               <div>
                 <h3 className="text-2xl font-black text-[#004B87] print:text-black">Application Report</h3>
@@ -191,42 +282,35 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            {/* Modal Scrollable Body */}
             <div className="p-8 overflow-y-auto max-h-[calc(90vh-85px)] print:max-h-none print:overflow-visible print:h-auto print:p-2">
               
               <div className="flex flex-col gap-8 print:gap-6">
                 
-                {/* 1. Firm Details Table */}
+                {/* A. Firm Details Table */}
                 <div className="print:break-inside-avoid">
                   <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-[#004B87] pb-2 inline-block print:border-black">
-                    <Building2 size={20} className="text-[#004B87] print:text-black" /> Firm Details
+                    <Building2 size={20} className="text-[#004B87] print:text-black" /> A. Firm Details
                   </h4>
                   <table className="w-full text-sm text-left border-collapse border border-gray-300">
                     <tbody>
                       <TabularRow label="Firm Name" value={selectedApp.firmName} />
-                      <TabularRow label="Type of Firm" value={selectedApp.firmType} />
-                      <TabularRow label="Enterprise Size" value={selectedApp.enterpriseSize} />
+                      <TabularRow label="Importer-Exporter Code (IEC)" value={selectedApp.iecCode || "N/A"} />
                       <TabularRow label="GSTIN" value={selectedApp.gstin} />
-                      <TabularRow label="IEC Code" value={selectedApp.iecPending ? "Applied (Pending)" : selectedApp.iecCode} />
+                      <TabularRow label="Enterprise Size" value={selectedApp.enterpriseSize} />
                       <TabularRow label="Udyam Number" value={selectedApp.udyamNumber || "N/A"} />
-                      
-                      {/* 🔥 UPDATE: Handle Other District logic */}
-                      <TabularRow 
-                        label="District" 
-                        value={selectedApp.district === "Other MP District" ? `${selectedApp.otherDistrictName} (Other)` : selectedApp.district} 
-                      />
-
-                      <TabularRow label="Address" value={selectedApp.address} />
-                      <TabularRow label="Website" value={selectedApp.website || "N/A"} />
+                      <TabularRow label="Type of Firm" value={selectedApp.firmType} />
+                      <TabularRow label="District" value={selectedApp.district === "Other MP District" ? `${selectedApp.otherDistrictName} (Other)` : selectedApp.district} />
+                      <TabularRow label="Factory/Office Address" value={selectedApp.address} />
+                      <TabularRow label="Website/Catalogue" value={selectedApp.website || "N/A"} />
                       <TabularRow label="Export Council" value={selectedApp.exportCouncil || "N/A"} />
                     </tbody>
                   </table>
                 </div>
 
-                {/* 2. Contact Information Table */}
+                {/* B. Contact Information Table */}
                 <div className="print:break-inside-avoid">
-                  <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-green-600 pb-2 inline-block print:border-black">
-                    <User size={20} className="text-green-600 print:text-black" /> Contact Information
+                  <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-[#059669] pb-2 inline-block print:border-black">
+                    <User size={20} className="text-[#059669] print:text-black" /> B. The Person Who Will Attend
                   </h4>
                   <table className="w-full text-sm text-left border-collapse border border-gray-300">
                     <thead>
@@ -262,18 +346,18 @@ export default function AdminDashboard() {
                   </table>
                 </div>
 
-                {/* 3. Product & Sector Table */}
+                {/* C & D. Sector & Product Table */}
                 <div className="print:break-inside-avoid">
-                  <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-yellow-500 pb-2 inline-block print:border-black">
-                    <Package size={20} className="text-yellow-600 print:text-black" /> Sector & Product Details
+                  <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-purple-500 pb-2 inline-block print:border-black">
+                    <Package size={20} className="text-purple-600 print:text-black" /> C & D. Sector & Product Details
                   </h4>
                   <table className="w-full text-sm text-left border-collapse border border-gray-300">
                     <tbody>
-                      <TabularRow label="Sector Track" value={<span className="font-bold text-[#004B87] print:text-black">{selectedApp.sectorTrack}</span>} />
-                      <TabularRow label="Primary Product" value={`${selectedApp.primaryProduct?.description} (HS: ${selectedApp.primaryProduct?.hsCode})`} />
+                      <TabularRow label="C. Sector Track" value={<span className="font-bold text-[#004B87] print:text-black">{selectedApp.sectorTrack}</span>} />
+                      <TabularRow label="D. Primary Product" value={`${selectedApp.primaryProduct?.description} (HS: ${selectedApp.primaryProduct?.hsCode})`} />
                       
                       {selectedApp.additionalProducts?.some(p => p.description) && (
-                        <TabularRow label="Additional Products" value={
+                        <TabularRow label="D. Additional Products" value={
                           <ul className="list-disc pl-4 m-0">
                             {selectedApp.additionalProducts.map((p, i) => p.description && (
                               <li key={i}>{p.description} <span className="text-gray-500 print:text-gray-800">(HS: {p.hsCode})</span></li>
@@ -289,10 +373,10 @@ export default function AdminDashboard() {
                   </table>
                 </div>
 
-                {/* 4. Market Readiness Table */}
+                {/* E. Market Readiness Table */}
                 <div className="print:break-inside-avoid">
                   <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-blue-500 pb-2 inline-block print:border-black">
-                    <Globe size={20} className="text-blue-500 print:text-black" /> Market Readiness
+                    <Globe size={20} className="text-blue-500 print:text-black" /> E. The Market & Buyer
                   </h4>
                   <table className="w-full text-sm text-left border-collapse border border-gray-300">
                     <tbody>
@@ -308,22 +392,22 @@ export default function AdminDashboard() {
                   </table>
                 </div>
 
-                {/* 5. Final Question */}
+                {/* F. Final Question */}
                 <div className="bg-gray-50 border border-gray-300 p-6 rounded-xl print:border-black print:bg-white print:break-inside-avoid">
                   <h4 className="flex items-center gap-2 text-md font-bold text-gray-900 mb-2">
                     <MessageSquare size={18} className="text-gray-700 print:text-black" /> 
-                    What is the one thing that has stopped you so far?
+                    F. One Question: What is the one thing that has stopped you so far?
                   </h4>
                   <p className="text-sm font-medium text-gray-800 leading-relaxed italic pl-6 border-l-4 border-yellow-400 print:border-black">
                     "{selectedApp.stoppingFactor}"
                   </p>
                 </div>
 
-                {/* 🔥 6. UPLOADED DOCUMENTS TABLE (NEW) */}
+                {/* G. UPLOADED DOCUMENTS TABLE */}
                 {selectedApp.documents && selectedApp.documents.length > 0 && (
                   <div className="print:break-inside-avoid">
-                    <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-purple-500 pb-2 inline-block print:border-black">
-                      <FileText size={20} className="text-purple-600 print:text-black" /> Uploaded Documents
+                    <h4 className="flex items-center gap-2 text-lg font-black text-gray-900 mb-3 border-b-2 border-slate-500 pb-2 inline-block print:border-black">
+                      <FileText size={20} className="text-slate-600 print:text-black" /> G. Documents Uploaded
                     </h4>
                     <table className="w-full text-sm text-left border-collapse border border-gray-300">
                       <tbody>
