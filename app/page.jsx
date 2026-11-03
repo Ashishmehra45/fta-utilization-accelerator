@@ -155,10 +155,10 @@ export default function HomeHero() {
                 </div>
 
                 {/* MAIN HEADING (Dynamically scales to fit screen) */}
-                <h1 className="mb-4 md:mb-6 text-center font-black text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] text-white">
+                <h1 className="mb-4 md:mb-6 font-medium text-center font-black text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] text-white">
                   Madhya Pradesh
                   <br />
-                  <span className="text-white font-bold">
+                  <span className="text-white ">
                     FTA Accelerator
                   </span>
                 </h1>
