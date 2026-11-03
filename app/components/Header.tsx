@@ -19,6 +19,7 @@ export default function Header() {
     { label: "Apply Now", path: "/apply" },
     { label: "FAQ", path: "/FAQs" },
     // {label: "Partner", path: "/partners" },
+    { label: "FTA Tool", path: "https://mp.intgrow.co/" },
     { label: "Contact Us", path: "/contact" } 
   ];
 
