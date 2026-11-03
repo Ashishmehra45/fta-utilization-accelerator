@@ -113,7 +113,7 @@ export default function HomeHero() {
                 
                 {/* Button 1: White with Glow */}
                 <Link
-                  href="/program"
+                  href="/home"
                   className="group flex w-full sm:w-auto min-w-[220px] items-center justify-center gap-3 rounded-full bg-white px-8 py-4 text-[1.1rem] font-bold text-[#002A54] shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all hover:scale-105"
                 >
                  
