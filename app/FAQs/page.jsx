@@ -223,11 +223,11 @@ export default function FAQPage() {
                     <span>1800-XXX-XXXX</span>
                   </Link>
                   <Link 
-                    href="mailto:fta@mpidc.gov.in" 
+                    href="mailto:export.investment@mpidc.co.in" 
                     className="flex items-center gap-3 bg-white/10 border border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-colors w-full sm:w-auto justify-center backdrop-blur-sm"
                   >
                     <MessageSquare size={20} />
-                    <span>fta@mpidc.gov.in</span>
+                    <span>export.investment@mpidc.co.in</span>
                   </Link>
                 </div>
               </div>

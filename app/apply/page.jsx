@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import Swal from "sweetalert2"; // Premium alerts
+import Swal from "sweetalert2";
 import {
   Building2,
   User,
@@ -12,8 +11,6 @@ import {
   Globe,
   MessageSquare,
   CheckSquare,
-  Send,
-  CheckCircle2,
   ArrowLeft,
   Settings,
   FlaskConical,
@@ -25,14 +22,11 @@ import {
   Check,
   RefreshCw,
   X,
+  CheckCircle2,
 } from "lucide-react";
 
-// IMPORT HEADER AND FOOTER
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
-// CLOUDINARY UPLOAD UTILITY (Ensure this file exists as we created earlier)
-import { uploadToCloudinary } from "../../utils/cloudinaryUpload";
 
 // --- Scroll & Animations ---
 const ScrollReveal = ({ children, className, delay = 0, direction = "up" }) => {
@@ -55,7 +49,7 @@ const ScrollReveal = ({ children, className, delay = 0, direction = "up" }) => {
   );
 };
 
-// --- Reusable Premium Form Section Wrapper ---
+// --- Reusable Form Section Wrapper ---
 const FormSection = ({ icon, title, color, children }) => (
   <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
     <div
@@ -84,12 +78,11 @@ export default function ApplyPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [refNumber, setRefNumber] = useState("");
 
-  // NEW: State for Cloudinary file uploads
-  const [isUploadingDocs, setIsUploadingDocs] = useState(false);
+  // Storage for actual File objects before submitting to Express Backend
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
-  // --- FORM DATA STATE (BACKEND CONNECTION) ---
+  // --- FORM DATA STATE ---
   const [formData, setFormData] = useState({
-    // Step 1
     firmName: "",
     iecCode: "",
     iecPending: false,
@@ -98,16 +91,13 @@ export default function ApplyPage() {
     udyamNumber: "",
     firmType: "",
     district: "",
-    otherDistrictName: "", // 🔥 NEW: For custom district
+    otherDistrictName: "",
     address: "",
     website: "",
     exportCouncil: "",
-    // Step 2
     primaryContact: { name: "", designation: "", mobile: "", email: "" },
     secondaryContact: { name: "", designation: "", mobile: "", email: "" },
-    // Step 3
     sectorTrack: "",
-    // Step 4
     primaryProduct: { description: "", hsCode: "" },
     additionalProducts: [
       { description: "", hsCode: "" },
@@ -116,7 +106,6 @@ export default function ApplyPage() {
     madeInMp: "",
     importedInputs: "",
     certifications: [],
-    // Step 5
     targetMarket: "",
     secondMarket: "",
     buyerStatus: "",
@@ -125,16 +114,12 @@ export default function ApplyPage() {
     claimedFtaBefore: "",
     tradeConnectRegistered: "",
     statusHolder: "",
-    // Step 6
     stoppingFactor: "",
-    // Step 7
-    documents: [], // 🔥 NEW: Array to store Cloudinary URLs
   });
 
   // --- MULTI-STEP LOGIC ---
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 7;
-
   const stepTitles = [
     "Firm Details",
     "Attendee",
@@ -145,7 +130,7 @@ export default function ApplyPage() {
     "Declaration",
   ];
 
-  // Generic Handler for flat fields
+  // Generic Handler for flat fields & checkboxes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
@@ -180,56 +165,47 @@ export default function ApplyPage() {
     setFormData({ ...formData, additionalProducts: updatedArray });
   };
 
-  // --- 🔥 NEW: CLOUDINARY FILE UPLOAD HANDLER ---
-  const handleFileUpload = async (e) => {
+  // --- 🔥 FILE HANDLING (5MB Limit & Max 5 Files for Express/Multer) ---
+  const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
     if (files.length === 0) return;
 
-    setIsUploadingDocs(true);
-    const uploadedDocs = [...formData.documents];
+    // Check Max 5 files limit
+    if (selectedFiles.length + files.length > 5) {
+      Swal.fire({
+        title: "Limit Exceeded",
+        text: "You can only upload up to 5 documents.",
+        icon: "warning",
+        confirmButtonColor: "#004B87",
+      });
+      return;
+    }
 
+    const newFiles = [];
     for (const file of files) {
-      if (file.size > 10 * 1024 * 1024) {
+      if (file.size > 5 * 1024 * 1024) {
+        // 5MB limit
         Swal.fire({
           title: "File too large",
-          text: `${file.name} is over 10MB`,
+          text: `${file.name} is over the 5MB limit.`,
           icon: "warning",
+          confirmButtonColor: "#004B87",
         });
-        continue;
-      }
-      try {
-        const fileUrl = await uploadToCloudinary(file);
-        if (fileUrl) {
-          uploadedDocs.push({ name: file.name, url: fileUrl });
-        } else {
-          Swal.fire({
-            title: "Upload Failed",
-            text: `Could not upload ${file.name}`,
-            icon: "error",
-          });
-        }
-      } catch (error) {
-        Swal.fire({
-          title: "Upload Failed",
-          text: `Error uploading ${file.name}`,
-          icon: "error",
-        });
+      } else {
+        newFiles.push(file);
       }
     }
 
-    setFormData({ ...formData, documents: uploadedDocs });
-    setIsUploadingDocs(false);
+    setSelectedFiles((prev) => [...prev, ...newFiles]);
   };
 
   const removeDocument = (indexToRemove) => {
-    const updatedDocs = formData.documents.filter(
-      (_, index) => index !== indexToRemove,
+    setSelectedFiles((prev) =>
+      prev.filter((_, index) => index !== indexToRemove),
     );
-    setFormData({ ...formData, documents: updatedDocs });
   };
-  // ----------------------------------------------
 
-  // Validate current step before moving next
+  // --- NAVIGATION ---
   const handleNext = () => {
     const currentStepElement = document.getElementById(`step-${currentStep}`);
     const inputs = currentStepElement.querySelectorAll(
@@ -256,16 +232,43 @@ export default function ApplyPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // FINAL SUBMIT HANDLER
+  // --- 🔥 FINAL SUBMIT TO EXPRESS JS BACKEND ---
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/apply", {
+      const dataToSubmit = new FormData();
+
+      // Convert Objects/Arrays to Strings to match backend's JSON.parse()
+      Object.keys(formData).forEach((key) => {
+        if (typeof formData[key] === "object") {
+          // JSON.stringify handles arrays and nested objects
+          dataToSubmit.append(key, JSON.stringify(formData[key]));
+        } else {
+          dataToSubmit.append(key, formData[key]);
+        }
+      });
+
+      // Append files exact with the name expected by upload.array("documents", 5)
+      selectedFiles.forEach((file) => {
+        dataToSubmit.append("documents", file);
+      });
+
+   // Automatically check if running on local or production
+      const isProduction = process.env.NODE_ENV === "production";
+      
+      // BASE_URL dono ke liye set kar diya jisme '/api' include hai
+      const BASE_URL = isProduction 
+        ? "https://mptradeportal.org/api" 
+        : "http://localhost:5000/api";
+
+      const EXPRESS_API_URL = `${BASE_URL}/fta/apply`;
+
+      const response = await fetch(EXPRESS_API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        // Browser automatically sets Content-Type to 'multipart/form-data' with boundary
+        body: dataToSubmit,
       });
 
       const result = await response.json();
@@ -273,15 +276,14 @@ export default function ApplyPage() {
       if (response.ok) {
         setIsSubmitting(false);
         setIsSubmitted(true);
-        setRefNumber(result.refNumber);
+        setRefNumber(result.refNumber || "N/A");
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         setIsSubmitting(false);
         Swal.fire({
           title: "Submission Failed",
           text:
-            result.message ||
-            "There was an error processing your application. Please try again.",
+            result.message || "There was an error processing your application.",
           icon: "error",
           confirmButtonColor: "#004B87",
         });
@@ -291,7 +293,7 @@ export default function ApplyPage() {
       setIsSubmitting(false);
       Swal.fire({
         title: "Connection Error",
-        text: "Unable to connect to the server. Please check your internet connection.",
+        text: "Unable to connect to the backend server. Is your Express server running?",
         icon: "warning",
         confirmButtonColor: "#004B87",
       });
@@ -429,7 +431,6 @@ export default function ApplyPage() {
                             placeholder="As on the IEC"
                           />
                         </div>
-
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Importer-Exporter Code (IEC){" "}
@@ -446,7 +447,6 @@ export default function ApplyPage() {
                             placeholder="Enter 10-digit code or type 'N/A'"
                           />
                         </div>
-
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             GSTIN <span className="text-red-500">*</span>
@@ -462,7 +462,6 @@ export default function ApplyPage() {
                             placeholder="15-character ID"
                           />
                         </div>
-
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Enterprise size{" "}
@@ -482,7 +481,6 @@ export default function ApplyPage() {
                             <option value="Large">Large</option>
                           </select>
                         </div>
-
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Udyam registration number
@@ -496,7 +494,6 @@ export default function ApplyPage() {
                             placeholder="If registered as an MSME"
                           />
                         </div>
-
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Type of firm <span className="text-red-500">*</span>
@@ -518,8 +515,6 @@ export default function ApplyPage() {
                             </option>
                           </select>
                         </div>
-
-                        {/* 🔥 District with Conditional Option */}
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             District <span className="text-red-500">*</span>
@@ -541,8 +536,7 @@ export default function ApplyPage() {
                             </option>
                           </select>
                         </div>
-
-                        {formData.district === "Other MP District" ? (
+                        {formData.district === "Other MP District" && (
                           <div>
                             <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                               Specify District{" "}
@@ -558,10 +552,7 @@ export default function ApplyPage() {
                               placeholder="Enter your district name"
                             />
                           </div>
-                        ) : (
-                          <div className="hidden md:block"></div>
                         )}
-
                         <div className="md:col-span-2 mt-2">
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Factory or office address{" "}
@@ -577,7 +568,6 @@ export default function ApplyPage() {
                             placeholder="Complete address"
                           ></textarea>
                         </div>
-
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Website or catalogue link
@@ -591,7 +581,6 @@ export default function ApplyPage() {
                             placeholder="https://"
                           />
                         </div>
-
                         <div>
                           <label className="block font-bold text-gray-900 mb-2 text-[0.95rem]">
                             Export Council / Association
@@ -626,8 +615,9 @@ export default function ApplyPage() {
                             />
                             <p className="m-0 text-[0.95rem] leading-[1.6]">
                               Must be the owner, a director, or the export
-                              manager.{" "}
+                              manager.
                               <strong>
+                                {" "}
                                 The same person attends all eight sessions.
                               </strong>
                             </p>
@@ -956,8 +946,8 @@ export default function ApplyPage() {
                                   value={opt}
                                   onChange={handleChange}
                                   checked={formData.madeInMp === opt}
-                                  className="w-4 h-4 text-[#d97706] focus:ring-[#d97706] border-gray-300"
                                   required
+                                  className="w-4 h-4 text-[#d97706] focus:ring-[#d97706] border-gray-300"
                                 />
                                 <span className="text-gray-700 font-medium">
                                   {opt}
@@ -1278,7 +1268,6 @@ export default function ApplyPage() {
                               <span className="text-red-500">*</span>
                             </span>
                           </label>
-
                           <label className="flex gap-4 items-start cursor-pointer select-none m-0">
                             <input
                               type="checkbox"
@@ -1292,7 +1281,6 @@ export default function ApplyPage() {
                               <span className="text-red-500">*</span>
                             </span>
                           </label>
-
                           <label className="flex gap-4 items-start cursor-pointer select-none m-0">
                             <input
                               type="checkbox"
@@ -1303,7 +1291,6 @@ export default function ApplyPage() {
                               firm on the cohort 1 list (optional).
                             </span>
                           </label>
-
                           <label className="flex gap-4 items-start cursor-pointer select-none m-0">
                             <input
                               type="checkbox"
@@ -1318,7 +1305,7 @@ export default function ApplyPage() {
                           </label>
                         </div>
 
-                        {/* 🔥 NEW: CLOUDINARY UPLOAD SECTION */}
+                        {/* 🔥 NEW: FILE UPLOAD TO EXPRESS BACKEND */}
                         <div className="md:col-span-2 mt-6 pt-6 border-t border-gray-100">
                           <label className="block font-bold text-gray-900 mb-2 text-[1rem]">
                             Documents{" "}
@@ -1328,50 +1315,36 @@ export default function ApplyPage() {
                           </label>
                           <p className="text-gray-500 mb-6 text-[0.9rem]">
                             Upload IEC certificate, Udyam certificate, or
-                            product catalogue (Up to 10 MB each).
+                            product catalogue (Max 5 files, up to 5 MB each).
                           </p>
 
                           <label
-                            className={`flex flex-col items-center justify-center p-10 rounded-2xl bg-gray-50 border-2 border-dashed border-gray-300 transition-all cursor-pointer group ${isUploadingDocs ? "opacity-60 pointer-events-none" : "hover:border-gray-500 hover:bg-gray-100"}`}
+                            className={`flex flex-col items-center justify-center p-10 rounded-2xl bg-gray-50 border-2 border-dashed border-gray-300 transition-all cursor-pointer group hover:border-gray-500 hover:bg-gray-100`}
                           >
-                            {isUploadingDocs ? (
-                              <>
-                                <RefreshCw
-                                  size={44}
-                                  className="text-[#004B87] mb-4 animate-spin"
-                                />
-                                <h6 className="font-bold text-[#004B87] mb-1">
-                                  Uploading securely...
-                                </h6>
-                              </>
-                            ) : (
-                              <>
-                                <UploadCloud
-                                  size={44}
-                                  className="text-gray-400 mb-4 group-hover:text-gray-600 transition-colors"
-                                />
-                                <h6 className="font-bold text-gray-900 mb-1">
-                                  Click to upload files
-                                </h6>
-                                <p className="text-gray-500 m-0 text-[0.85rem]">
-                                  PDF, PNG, JPG up to 10MB
-                                </p>
-                              </>
-                            )}
+                            <UploadCloud
+                              size={44}
+                              className="text-gray-400 mb-4 group-hover:text-gray-600 transition-colors"
+                            />
+                            <h6 className="font-bold text-gray-900 mb-1">
+                              Click to select files
+                            </h6>
+                            <p className="text-gray-500 m-0 text-[0.85rem]">
+                              PDF, PNG, JPG up to 5MB
+                            </p>
                             <input
                               type="file"
                               multiple
+                              name="documents" // Multer backend 'documents' field check karega
                               accept=".pdf,.png,.jpg,.jpeg"
                               onChange={handleFileUpload}
-                              disabled={isUploadingDocs}
                               className="hidden"
                             />
                           </label>
 
-                          {/* Uploaded Files List */}
-                          {formData.documents.length > 0 && (
+                          {/* Selected Files List (Before Submit) */}
+                          {selectedFiles.length > 0 && (
                             <div className="mt-4 flex flex-col gap-3">
-                              {formData.documents.map((doc, idx) => (
+                              {selectedFiles.map((doc, idx) => (
                                 <div
                                   key={idx}
                                   className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-xl"
@@ -1382,7 +1355,9 @@ export default function ApplyPage() {
                                       className="text-green-600 shrink-0"
                                     />
                                     <span className="text-sm font-medium text-green-800 truncate">
-                                      {doc.name}
+                                      {doc.name} (
+                                      {(doc.size / (1024 * 1024)).toFixed(2)}{" "}
+                                      MB)
                                     </span>
                                   </div>
                                   <button
@@ -1425,7 +1400,7 @@ export default function ApplyPage() {
                         ) : (
                           <button
                             type="submit"
-                            disabled={isSubmitting || isUploadingDocs}
+                            disabled={isSubmitting}
                             className="font-black text-white uppercase inline-flex justify-center items-center gap-2 px-8 py-3 rounded-full shadow-lg bg-[#1868e0] tracking-[1px] hover:-translate-y-1 hover:shadow-xl transition-all disabled:opacity-70 disabled:hover:translate-y-0"
                           >
                             {isSubmitting ? (
@@ -1479,8 +1454,8 @@ export default function ApplyPage() {
                       Questions? Contact Helpdesk:
                     </p>
                     <div className="flex justify-center gap-6 text-gray-900 font-medium text-[0.9rem]">
-                      <span>📞 1800-XXX-XXXX</span>
-                      <span>✉️ fta@mpidc.gov.in</span>
+                      <span>📞 18004109101</span>
+                      <span>✉️ export.investment@mpidc.co.in</span>
                     </div>
                     <button
                       className="font-bold rounded-full px-6 py-3 mx-auto mt-6 flex items-center gap-2 border-2 border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"

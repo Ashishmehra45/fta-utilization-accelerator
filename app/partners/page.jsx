@@ -167,7 +167,7 @@ export default function PartnersPage() {
                     <Mail className="text-[#004B87]" /> Nominate members
                   </h3>
                   <p className="text-gray-600 leading-[1.7] mb-4 text-[1.05rem]">
-                    Send a list (firm, district, product, named person, mobile, email, track) to <strong className="text-gray-900">fta@mpidc.gov.in</strong> with the subject "Accelerator nominations", or ask the Export Cell to hold an online briefing for your members.
+                    Send a list (firm, district, product, named person, mobile, email, track) to <strong className="text-gray-900">export.investment@mpidc.co.in</strong> with the subject "Accelerator nominations", or ask the Export Cell to hold an online briefing for your members.
                   </p>
                   <p className="text-gray-600 leading-[1.7] text-[1.05rem] m-0 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                     <strong className="text-[#004B87]">Note:</strong> Nominated firms still apply on the Apply page, so that every firm is checked against the same four conditions.
@@ -189,7 +189,7 @@ export default function PartnersPage() {
                   </p>
                   <div className="flex items-center gap-3 mt-6">
                     <span className="font-bold text-sm uppercase tracking-wide text-gray-500">Ask for the desk:</span>
-                    <a href="mailto:fta@mpidc.gov.in" className="font-bold text-[#004B87] hover:underline">fta@mpidc.gov.in</a>
+                    <a href="mailto:export.investment@mpidc.co.in" className="font-bold text-[#004B87] hover:underline">export.investment@mpidc.co.in</a>
                   </div>
                 </div>
               </ScrollReveal>
@@ -199,7 +199,7 @@ export default function PartnersPage() {
             {/* CALL TO ACTION BUTTONS */}
             <ScrollReveal direction="up" className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
               <Link 
-                href="mailto:fta@mpidc.gov.in?subject=Accelerator%20nominations" 
+                href="mailto:export.investment@mpidc.co.in?subject=Accelerator%20nominations" 
                 className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 bg-[#004B87] text-white font-bold rounded-full shadow-lg hover:bg-[#003366] hover:-translate-y-1 transition-all"
               >
                 <Users size={18} /> Nominate members
