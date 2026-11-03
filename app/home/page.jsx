@@ -317,7 +317,7 @@ export default function App() {
                     <strong className="text-[#004B87]">FTA module</strong> of
                     this Portal, and the{" "}
                     <strong className="text-[#004B87]">
-                      Madhya Pradesh FTA Accelerator
+                      MP FTA Accelerator Programme
                     </strong>
                     .
                   </p>
