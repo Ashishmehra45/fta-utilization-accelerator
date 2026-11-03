@@ -123,7 +123,7 @@ export default function HomeHero() {
 
                 {/* Button 2: Transparent/Bordered */}
                 <Link
-                  href="/tools"
+                  href="/https://mp.intgrow.co"
                   className="group flex w-full sm:w-auto min-w-[220px] items-center justify-center gap-3 rounded-full bg-transparent border-2 border-white px-8 py-4 text-[1.1rem] font-bold text-white shadow-lg transition-all hover:bg-white/10 hover:scale-105"
                 >
                  
