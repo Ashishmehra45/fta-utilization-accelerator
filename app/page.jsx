@@ -32,7 +32,7 @@ export default function HomeHero() {
           <img 
             src="/madhya-pradesh-logo-png_seeklogo-188476-removebg-preview.png"
             alt="Government of Madhya Pradesh" 
-            className="h-10 w-auto object-contain"
+            className="h-15 w-auto object-contain"
           />
           <div className="flex flex-col">
             <span className="text-white text-[10px] leading-tight">Government of</span>
@@ -102,7 +102,7 @@ export default function HomeHero() {
               </div>
 
               {/* Main Title (Exact styling from image) */}
-              <h1 className="text-white font-bold text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
+              <h1 className="text-white font-medium text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
                 FTA <span className="text-[#F59E0B]  font-semibold">Accelerator</span> Program
               </h1>
 
