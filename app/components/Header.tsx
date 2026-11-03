@@ -12,7 +12,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", path: "/" },
+    { label: "Home", path: "/home" },
     { label: "Programme", path: "/program" },
     { label: "Sectors", path: "/sectors" },
     { label: "Who Can Apply", path: "/who-can-apply" },
@@ -84,7 +84,7 @@ export default function Header() {
         <div className="w-full max-w-[1536px] mx-auto px-4 md:px-6 flex items-center justify-between h-[80px]">
           
           {/* 1. LOGO SECTION */}
-          <Link href="/" className="flex items-center gap-2 md:gap-3 z-10 cursor-pointer no-underline group">
+          <Link href="/home" className="flex items-center gap-2 md:gap-3 z-10 cursor-pointer no-underline group">
             <div className="relative shrink-0 w-[150px] h-[80px] transition-transform duration-300 group-hover:scale-105">
                <Image 
                   src="/FTA/MPIDC.png" 
