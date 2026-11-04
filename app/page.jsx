@@ -62,9 +62,9 @@ export default function HomeHero() {
 
         {/* Center Links (Desktop only) */}
         <nav className="hidden lg:flex items-center gap-8 text-[14px] font-medium text-gray-300">
-          <Link href="#" className="text-white relative after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-5 after:h-[2px] after:bg-gray-400">Home</Link>
-          <Link href="#" className="hover:text-white transition-colors">MP FTA Portal</Link>
-          <Link href="#" className="hover:text-white transition-colors">FTA Tools</Link>
+          {/* <Link href="#" className="text-white relative after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-5 after:h-[2px] after:bg-gray-400">Home</Link> */}
+          <Link href="/home" className="hover:text-white transition-colors">MP FTA Portal</Link>
+          <Link href="https://mp.intgrow.co/" className="hover:text-white transition-colors">FTA Tools</Link>
         </nav>
 
         {/* Right Login Button Placeholder */}
@@ -153,7 +153,7 @@ export default function HomeHero() {
 
                 {/* Transparent Bordered Button */}
                 <Link
-                  href="/tools"
+                  href="https://mp.intgrow.co/"
                   className="group flex w-full sm:w-auto min-w-[220px] items-center justify-center gap-3 rounded-full bg-transparent border border-gray-400 px-8 py-3.5 text-[1.05rem] font-medium text-white transition-all hover:border-white hover:bg-white/5 hover:scale-105"
                 >
                   <span>FTA Tools</span>
