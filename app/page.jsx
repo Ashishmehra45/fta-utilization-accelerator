@@ -47,12 +47,13 @@ export default function HomeHero() {
 
       {/* ==================== TOP NAVBAR (EXACT FROM SCREENSHOT) ==================== */}
       <header className="w-full py-4 px-6 md:px-12 flex justify-between items-center z-50 relative">
-        {/* Left Logo */}
+       {/* Left Logo */}
         <div className="flex items-center gap-3">
           <img 
             src="/madhya-pradesh-logo-png_seeklogo-188476-removebg-preview.png"
             alt="Government of Madhya Pradesh" 
-            className="h-12 w-auto object-contain"
+            
+            className="h-15 w-15 object-contain bg-white rounded-full  "
           />
           <div className="flex flex-col">
             <span className="text-white text-[10px] md:text-xs leading-tight">Government of</span>
