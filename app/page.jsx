@@ -45,6 +45,8 @@ export default function HomeHero() {
         <div className="absolute inset-0 bg-[#051329]/30 z-10"></div>
       </div>
 
+      
+
       {/* ==================== TOP NAVBAR (EXACT FROM SCREENSHOT) ==================== */}
       <header className="w-full py-4 px-6 md:px-12 flex justify-between items-center z-50 relative">
        {/* Left Logo
