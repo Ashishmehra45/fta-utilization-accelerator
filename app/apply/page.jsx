@@ -330,7 +330,7 @@ export default function ApplyPage() {
                 Apply to the Accelerator
               </h1>
               <p className="text-gray-600 font-medium mx-auto m-0 text-[1.05rem] max-w-[700px] leading-[1.6]">
-                Fill the form below or bring it to the FTA Helpdesk at the MPIDC
+                Fill the form below or bring it to the FTA/EXPORT HELPLINE at the MPIDC
                 Export Cell.
               </p>
             </ScrollReveal>
@@ -1454,7 +1454,7 @@ export default function ApplyPage() {
                       Questions? Contact Helpdesk:
                     </p>
                     <div className="flex justify-center gap-6 text-gray-900 font-medium text-[0.9rem]">
-                      <span>📞 18004109101</span>
+                      <span>📞 +91-755-257-7145</span>
                       <span>✉️ export.investment@mpidc.co.in</span>
                     </div>
                     <button

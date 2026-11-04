@@ -89,7 +89,7 @@ const faqs = [
   },
   {
     question: "How do we apply, and when do we hear?",
-    answer: "On the Apply page of this Portal, at the FTA Helpdesk in Bhopal, or at the enrolment desk of the Conclave on 5 November 2026. Enrolment closes on 30 November 2026. The cohort lists are published on this Portal the same day and every applicant receives an email. Selected firms receive the enrolment letter, the orientation link for 1 December and the Readiness Questionnaire."
+    answer: "On the Apply page of this Portal, at the FTA/EXPORT HELPLINE in Bhopal, or at the enrolment desk of the Conclave on 5 November 2026. Enrolment closes on 30 November 2026. The cohort lists are published on this Portal the same day and every applicant receives an email. Selected firms receive the enrolment letter, the orientation link for 1 December and the Readiness Questionnaire."
   },
   {
     question: "We missed cohort 1. What now?",
@@ -211,7 +211,7 @@ export default function FAQPage() {
                   A question that is not here?
                 </h3>
                 <p className="text-blue-100 text-[1.1rem] md:text-[1.2rem] mb-8 max-w-[600px]">
-                  A question asked by one firm becomes a written answer on this page for every firm. Ask the FTA Helpdesk:
+                  A question asked by one firm becomes a written answer on this page for every firm. Ask the FTA/EXPORT HELPLINE:
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">

@@ -70,12 +70,12 @@ export default function Header() {
           <span className="header-marquee-item">Madhya Pradesh FTA Accelerator</span> •
           <span className="header-marquee-item"><Calendar size={12}/> Cohort 1: 1 Dec 2026 to 28 Feb 2027</span> •
           <span className="header-marquee-item" style={{ color: '#white' }}><AlertTriangle size={12}/> Enrolment closes 30 Nov 2026</span> •
-          <span className="header-marquee-item"><PhoneCall size={12}/> FTA Helpdesk: 18004109101</span> •
+          <span className="header-marquee-item"><PhoneCall size={12}/> FTA/EXPORT HELPLINE: +91-755-257-7145</span> •
           
           <span className="header-marquee-item">Madhya Pradesh FTA Accelerator</span> •
           <span className="header-marquee-item"><Calendar size={12}/> Cohort 1: 1 Dec 2026 to 28 Feb 2027</span> •
           <span className="header-marquee-item" style={{ color: '#white' }}><AlertTriangle size={12}/> Enrolment closes 30 Nov 2026</span> •
-          <span className="header-marquee-item"><PhoneCall size={12}/> FTA Helpdesk: 18004109101</span> •
+          <span className="header-marquee-item"><PhoneCall size={12}/> FTA/EXPORT HELPLINE: +91-755-257-7145</span> •
         </div>
       </div>
 

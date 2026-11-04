@@ -86,7 +86,7 @@ export default function ContactPage() {
               </h1>
               <div className="w-[60px] h-[4px] bg-[#FFD700] mx-auto rounded-full mb-6" />
               <p className="text-blue-100 text-[1.1rem] md:text-[1.2rem] max-w-[700px] mx-auto font-light leading-[1.7]">
-                Welcome to the FTA Helpdesk. Have a question about the Accelerator programme, eligibility, or your specific export scenario? We are here to help.
+                Welcome to the FTA/EXPORT HELPLINE. Have a question about the Accelerator programme, eligibility, or your specific export scenario? We are here to help.
               </p>
             </ScrollReveal>
           </div>
@@ -100,7 +100,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-6">
               <ScrollReveal direction="left" className="h-full">
                 <div className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-xl h-full">
-                  <h3 className="font-bold text-[1.6rem] text-[#004B87] mb-8">FTA Helpdesk Details</h3>
+                  <h3 className="font-bold text-[1.6rem] text-[#004B87] mb-8">FTA/EXPORT HELPLINE Details</h3>
                   
                   <div className="flex flex-col gap-6">
                     {[

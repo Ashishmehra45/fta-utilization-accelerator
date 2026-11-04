@@ -312,7 +312,7 @@ export default function App() {
                       MP FTA Handbook for Exporters
                     </strong>
                     , the{" "}
-                    <strong className="text-[#004B87]">FTA Helpdesk</strong> at
+                    <strong className="text-[#004B87]">FTA/EXPORT HELPLINE</strong> at
                     the MPIDC Export Cell, the{" "}
                     <strong className="text-[#004B87]">FTA module</strong> of
                     this Portal, and the{" "}
@@ -839,7 +839,7 @@ export default function App() {
                     <div className="flex items-center gap-4 mb-6">
                       <Info size={28} color="#ffffff" />
                       <h4 className="font-bold text-white m-0 text-[1.8rem]">
-                        FTA Helpdesk
+                        FTA/EXPORT HELPLINE
                       </h4>
                     </div>
                     <p className="text-white/80 mb-8 text-[1.05rem]">
@@ -851,7 +851,7 @@ export default function App() {
                       <li className="flex items-center gap-4">
                         <Phone size={20} className="text-white/80" />
                         <span className="font-medium text-[1.1rem]">
-                          18004109101
+                          +91-755-257-7145
                         </span>
                       </li>
                       <li className="flex items-center gap-4">

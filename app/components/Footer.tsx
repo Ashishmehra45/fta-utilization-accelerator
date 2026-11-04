@@ -123,7 +123,7 @@ export default function Footer() {
               <div className="flex items-center gap-4 text-white/80">
                 <Phone size={20} className="text-white" strokeWidth={1.5} />
                 <p className="m-0 text-[0.95rem] font-light">
-                  18004109101
+                  +91-755-257-7145
                 </p>
               </div>
 

@@ -160,7 +160,7 @@ export default function ProgrammePage() {
                 { icon: <Handshake size={22} />, title: "Buyer meetings", desc: "Phase 4 includes buyer meetings arranged via Indian Missions & bilateral chambers." },
                 { icon: <Globe size={22} />, title: "Language", desc: "Sessions in Hindi and English. Materials in English; Hindi Handbook follows in Jan 2027." },
                 { icon: <Package size={22} />, title: "Materials", desc: "Shipment plan template, FTA Handbook, worksheets, Q&A records, and session recordings." },
-                { icon: <LifeBuoy size={22} />, title: "Support", desc: "Priority FTA Helpdesk, WhatsApp group, and monthly online clinics with customs brokers." },
+                { icon: <LifeBuoy size={22} />, title: "Support", desc: "Priority FTA/EXPORT HELPLINE, WhatsApp group, and monthly online clinics with customs brokers." },
                 { icon: <Award size={22} />, title: "Certificate", desc: "Certificate of completion from State Export Commissioner for firms completing their plan." }
               ].map((item, idx) => (
                 <ScrollReveal key={idx} delay={idx * 0.05} direction="up" className="h-full">
