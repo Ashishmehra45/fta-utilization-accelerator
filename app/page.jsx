@@ -47,26 +47,9 @@ export default function HomeHero() {
 
       {/* ==================== TOP NAVBAR (EXACT FROM SCREENSHOT) ==================== */}
       <header className="w-full py-4 px-6 md:px-12 flex justify-between items-center z-50 relative">
-       {/* Left Logo */}
-        <div className="flex items-center gap-3">
-          <img 
-            src="/madhya-pradesh-logo-png_seeklogo-188476-removebg-preview.png"
-            alt="Government of Madhya Pradesh" 
-            
-            className="h-15 w-15 object-contain bg-white rounded-full  "
-          />
-          <div className="flex flex-col">
-            <span className="text-white text-[10px] md:text-xs leading-tight">Government of</span>
-            <span className="text-white font-bold text-[13px] md:text-sm leading-tight">Madhya Pradesh</span>
-          </div>
-        </div>
+      
 
-        {/* Center Links (Desktop only) */}
-        <nav className="hidden lg:flex items-center gap-8 text-[14px] font-medium text-gray-300">
-          {/* <Link href="#" className="text-white relative after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:w-5 after:h-[2px] after:bg-gray-400">Home</Link> */}
-          <Link href="/home" className="hover:text-white transition-colors">MP FTA Portal</Link>
-          <Link href="https://mp.intgrow.co/" className="hover:text-white transition-colors">FTA Tools</Link>
-        </nav>
+        
 
         {/* Right Login Button Placeholder */}
         <div></div>
