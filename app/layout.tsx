@@ -20,6 +20,11 @@ export const metadata: Metadata = {
     "Trade Agreement",
     "Accelerator",
   ],
+  // 🔥 YAHAN FAVICON ADD KIYA HAI 🔥
+  icons: {
+    icon: "/mplogo.png", // Agar .png hai toh "/favicon.png" kar dena
+    apple: "/mplogo.png", // (Optional) Apple devices ke liye
+  },
 };
 
 export default function RootLayout({
