@@ -107,7 +107,7 @@ export default function ContactPage() {
                       { icon: <MapPin size={22} />, title: "Office", desc: "Export Cell, M.P. Industrial Development Corporation, 21 Arera Hills, Bhopal 462011" },
                       { icon: <Phone size={22} />, title: "Telephone", desc: "1800-XXX-XXXX" },
                       { icon: <Mail size={22} />, title: "Email", desc: "export.investment@mpidc.co.in" },
-                      { icon: <MessageCircle size={22} />, title: "WhatsApp", desc: "+91 99999 99999" },
+                     
                       { icon: <Clock size={22} />, title: "Hours", desc: "Working days, 10 AM to 6 PM" },
                     ].map((item, i) => (
                       <div key={i} className="flex gap-5 items-start group">

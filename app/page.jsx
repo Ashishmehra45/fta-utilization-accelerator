@@ -860,12 +860,7 @@ export default function App() {
                           export.investment@mpidc.co.in
                         </span>
                       </li>
-                      <li className="flex items-center gap-4">
-                        <Phone size={20} className="text-white/80" />
-                        <span className="font-medium text-[1.1rem]">
-                          +91 99999 99999 (WhatsApp)
-                        </span>
-                      </li>
+                     
                     </ul>
 
                     <p className="text-white/50 m-0 text-[0.9rem] mt-auto">
