@@ -864,7 +864,7 @@ export default function App() {
                     </ul>
 
                     <p className="text-white/50 m-0 text-[0.9rem] mt-auto">
-                      Working days, 10 AM to 6 PM. Answers within two working
+                      Government Working days, 10 AM to 6 PM. Answers within two working
                       days.
                     </p>
                   </div>

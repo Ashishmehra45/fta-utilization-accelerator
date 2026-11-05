@@ -220,7 +220,7 @@ export default function FAQPage() {
                     className="flex items-center gap-3 bg-white text-[#004B87] px-8 py-4 rounded-full font-bold shadow-lg hover:-translate-y-1 transition-transform w-full sm:w-auto justify-center"
                   >
                     <Phone size={20} />
-                    <span>1800-XXX-XXXX</span>
+                    <span> +91-755-257-7145</span>
                   </Link>
                   <Link 
                     href="mailto:export.investment@mpidc.co.in" 

@@ -105,10 +105,10 @@ export default function ContactPage() {
                   <div className="flex flex-col gap-6">
                     {[
                       { icon: <MapPin size={22} />, title: "Office", desc: "Export Cell, M.P. Industrial Development Corporation, 21 Arera Hills, Bhopal 462011" },
-                      { icon: <Phone size={22} />, title: "Telephone", desc: "1800-XXX-XXXX" },
+                      { icon: <Phone size={22} />, title: "Telephone", desc: " +91-755-257-7145" },
                       { icon: <Mail size={22} />, title: "Email", desc: "export.investment@mpidc.co.in" },
                      
-                      { icon: <Clock size={22} />, title: "Hours", desc: "Working days, 10 AM to 6 PM" },
+                      { icon: <Clock size={22} />, title: "Hours", desc: " Government Working days, 10 AM to 6 PM" },
                     ].map((item, i) => (
                       <div key={i} className="flex gap-5 items-start group">
                         <div className="p-3.5 bg-[#004B87]/5 text-[#004B87] rounded-xl shrink-0 mt-0.5 group-hover:bg-[#004B87] group-hover:text-white transition-colors duration-300">
