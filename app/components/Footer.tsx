@@ -60,7 +60,7 @@ export default function Footer() {
               </Link>
 
               <Link 
-                href="https://www.incubationmasters.com/assets/assets/images/logo/logo-light.png" 
+                href="https://www.incubationmasters.com/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-block no-underline ml-2"
