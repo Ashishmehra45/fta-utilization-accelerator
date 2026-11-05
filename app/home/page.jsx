@@ -142,7 +142,7 @@ export default function App() {
               >
                 {/* GOVERNMENT LABEL */}
                 <div className="mb-2 rounded-full bg-white px-5 py-2 text-[10px] font-bold uppercase tracking-[1px] text-[#004B87] shadow-md sm:text-[11px]">
-                  MP Export Accelerator Programme · MPIDC
+                  MP Export Accelerator Programme 
                 </div>
 
                 {/* MAIN HEADING */}
