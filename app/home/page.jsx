@@ -22,8 +22,8 @@ import {
   CalendarDays,
 } from "lucide-react";
 
-import Header from "../app/components/Header";
-import Footer from "../app/components/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 // --- Scroll & Animations ---
 const ScrollReveal = ({ children, className, delay = 0, direction = "up" }) => {
