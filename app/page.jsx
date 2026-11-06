@@ -178,24 +178,31 @@ export default function App() {
                 </p>
 
                 {/* ACTION BUTTONS */}
-                <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-3">
+                <div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4 mt-4">
                   <Link
                     href="/apply"
-                    className="w-full max-w-[200px] rounded-full bg-white px-6 py-3.5 text-center text-base font-bold text-[#004B87] shadow-lg transition-all hover:-translate-y-1 hover:bg-gray-100"
+                    className="flex w-full max-w-[240px] items-center justify-center rounded-full bg-white px-6 py-3.5 text-center text-[0.95rem] font-bold text-[#004B87] shadow-lg transition-all hover:-translate-y-1 hover:bg-gray-100"
                   >
                     Apply now
                   </Link>
 
                   <Link
+                    href="#other-downloads"
+                    className="flex w-full max-w-[240px] items-center justify-center rounded-full border border-white/30 bg-white/10 px-4 py-3.5 text-center text-[0.95rem] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                  >
+                    FTA Handbook Download
+                  </Link>
+
+                  <Link
                     href="#phases"
-                    className="w-full max-w-[220px] rounded-full border border-white/30 bg-white/10 px-6 py-3.5 text-center text-base font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                    className="flex w-full max-w-[240px] items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3.5 text-center text-[0.95rem] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
                   >
                     The programme
                   </Link>
 
                   <Link
                     href="#contact"
-                    className="w-full max-w-[200px] rounded-full border border-white/30 bg-white/10 px-6 py-3.5 text-center text-base font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                    className="flex w-full max-w-[240px] items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3.5 text-center text-[0.95rem] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20"
                   >
                     Call Helpdesk
                   </Link>
@@ -312,8 +319,10 @@ export default function App() {
                       MP FTA Handbook for Exporters
                     </strong>
                     , the{" "}
-                    <strong className="text-[#004B87]">FTA/EXPORT HELPLINE</strong> at
-                    the MPIDC Export Cell, the{" "}
+                    <strong className="text-[#004B87]">
+                      FTA/EXPORT HELPLINE
+                    </strong>{" "}
+                    at the MPIDC Export Cell, the{" "}
                     <strong className="text-[#004B87]">FTA module</strong> of
                     this Portal, and the{" "}
                     <strong className="text-[#004B87]">
@@ -804,9 +813,8 @@ export default function App() {
                     <p className="m-0 text-gray-600 text-[0.95rem] leading-[1.5]">
                       <strong className="text-[#004B87]">Note:</strong> Firms of
                       every size may apply. Where a track has more applicants
-                      than seats,  to firms that have
-                      never claimed a preference, and to ensure a spread of
-                      districts across the State.
+                      than seats, to firms that have never claimed a preference,
+                      and to ensure a spread of districts across the State.
                     </p>
                   </div>
                 </ScrollReveal>
@@ -860,7 +868,6 @@ export default function App() {
                           export.investment@mpidc.co.in
                         </span>
                       </li>
-                     
                     </ul>
 
                     <p className="text-white/50 m-0 text-[0.9rem] mt-auto">
@@ -888,29 +895,59 @@ export default function App() {
                       <Download size={18} /> Download the brochure
                     </button>
 
-                    <div className="flex flex-col gap-3 text-left pt-6 border-t border-white/10">
-                      <span className="text-white/50 font-bold mb-2 text-[11px] tracking-[1px]">
+                    <div className="flex flex-col gap-5 text-left pt-6 border-t border-white/10">
+                      <span
+                        id="other-downloads"
+                        className="text-white/50 font-bold text-[11px] tracking-[1px] mb-1"
+                      >
                         OTHER DOWNLOADS
                       </span>
-                      <Link
-                        href="#"
-                        className="no-underline text-white flex items-center gap-3 opacity-75 hover:opacity-100 transition-opacity text-[0.95rem]"
-                      >
-                        <Download size={16} /> MP FTA Handbook for Exporters
-                        (PDF)
-                      </Link>
-                      <Link
-                        href="#"
-                        className="no-underline text-white flex items-center gap-3 opacity-75 hover:opacity-100 transition-opacity mt-2 text-[0.95rem]"
-                      >
-                        <Download size={16} /> MP FTA Action Plan 2026-27 (PDF)
-                      </Link>
-                      <Link
-                        href="#"
-                        className="no-underline text-white flex items-center gap-3 opacity-75 hover:opacity-100 transition-opacity mt-2 text-[0.95rem]"
-                      >
-                        <Download size={16} /> Offline Application form (PDF)
-                      </Link>
+
+                      {/* ================= DOCUMENT 1 ================= */}
+                      <div className="flex flex-col gap-2">
+                        <span className="text-white text-[0.95rem] font-medium opacity-90">
+                          MP FTA Handbook for Exporters
+                        </span>
+                        <div className="flex items-center gap-5">
+                          <Link
+                            href="/pdf/Madhya_Pradesh_FTA_Handbook_for_Exporters_04Nov2026_v17_print.pdf"
+                            target="_blank"
+                            className="no-underline text-white flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity text-[0.85rem]"
+                          >
+                            <Download size={14} /> English (PDF)
+                          </Link>
+                          <Link
+                            href="/pdf/Madhya_Pradesh_FTA_Handbook_for_Exporters_Hindi_04Nov2026_v13_print.pdf"
+                            target="_blank"
+                            className="no-underline text-white flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity text-[0.85rem]"
+                          >
+                            <Download size={14} /> Hindi (PDF)
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* ================= DOCUMENT 2 ================= */}
+                      <div className="flex flex-col gap-2">
+                        <span className="text-white text-[0.95rem] font-medium opacity-90">
+                          MP FTA Action Plan 2026-27
+                        </span>
+                        <div className="flex items-center gap-5">
+                          <Link
+                            href="/pdf/Madhya_Pradesh_FTA_Action_Plan_2026-27_English_Print_Final_5Nov2026.pdf"
+                            target="_blank"
+                            className="no-underline text-white flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity text-[0.85rem]"
+                          >
+                            <Download size={14} /> English (PDF)
+                          </Link>
+                          <Link
+                            href="/pdf/Madhya_Pradesh_FTA_Action_Plan_2026-27_Hindi_Print_Final_5Nov2026.pdf"
+                            target="_blank"
+                            className="no-underline text-white flex items-center gap-1.5 opacity-60 hover:opacity-100 transition-opacity text-[0.85rem]"
+                          >
+                            <Download size={14} /> Hindi (PDF)
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
