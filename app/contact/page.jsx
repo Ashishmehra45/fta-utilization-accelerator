@@ -47,9 +47,17 @@ export default function ContactPage() {
     e.preventDefault();
     setStatus("loading");
 
+    // Automatically check if running on local or production
+      const isProduction = process.env.NODE_ENV === "production";
+      
+      // BASE_URL dono ke liye set kar diya jisme '/api' include hai
+      const BASE_URL = isProduction 
+        ? "https://mptradeportal.org/api" 
+        : "http://localhost:5000/api";
+
     try {
       // Backend API call
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${BASE_URL}/fta/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
