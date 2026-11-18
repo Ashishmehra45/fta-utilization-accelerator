@@ -856,12 +856,30 @@ export default function App() {
                     </p>
 
                     <ul className="list-none p-0 m-0 text-white flex flex-col gap-4 mb-8">
-                      <li className="flex items-center gap-4">
-                        <Phone size={20} className="text-white/80" />
-                        <span className="font-medium text-[1.1rem]">
-                          +91-755-257-7145
-                        </span>
+                      {/* 🔥 PHONE SECTION (Tanmay & Toll Free grouped) 🔥 */}
+                      <li className="flex items-start gap-4">
+                        <Phone size={20} className="text-white/80 mt-1" />
+                        <div className="flex flex-col gap-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                            <span className="text-white text-[1.1rem]">
+                              Tanmay Nigam:
+                            </span>
+                            <span className="font-medium text-[1.1rem]">
+                              +91 89898 99890
+                            </span>
+                          </div>
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                            <span className="text-white text-[1.1rem]">
+                              Telephone:
+                            </span>
+                            <span className="font-medium text-[1.1rem]">
+                              +91-755-257-7145
+                            </span>
+                          </div>
+                        </div>
                       </li>
+
+                      {/* 🔥 EMAIL SECTION 🔥 */}
                       <li className="flex items-center gap-4">
                         <MessageSquare size={20} className="text-white/80" />
                         <span className="font-medium text-[1.1rem]">
@@ -870,10 +888,7 @@ export default function App() {
                       </li>
                     </ul>
 
-                    <p className="text-white/50 m-0 text-[0.9rem] mt-auto">
-                      Working days, 10 AM to 6 PM. Answers within two working
-                      days.
-                    </p>
+                    
                   </div>
 
                   <div className="p-8 md:p-12 flex flex-col justify-center bg-[#003366]">

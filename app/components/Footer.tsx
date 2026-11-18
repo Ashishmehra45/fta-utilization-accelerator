@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react"; 
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
   const footerLinks = [
@@ -10,25 +10,25 @@ export default function Footer() {
     { label: "Who Can Apply", path: "/who-can-apply" },
     { label: "Apply Now", path: "/apply" },
     { label: "FAQs", path: "/FAQs" },
-    { label: "Contact Us", path: "/contact" }
+    { label: "Contact Us", path: "/contact" },
   ];
 
   return (
-    <footer className="lg:py-16 py-10" style={{ backgroundColor: '#002A54' }}>
-      <div className="container mx-auto px-4 md:px-8" style={{ maxWidth: '1300px' }}>
-        
+    <footer className="lg:py-16 py-10" style={{ backgroundColor: "#002A54" }}>
+      <div
+        className="container mx-auto px-4 md:px-8"
+        style={{ maxWidth: "1300px" }}
+      >
         {/* 3-COLUMN GRID LAYOUT */}
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr] gap-10 lg:gap-16 mb-12">
-          
           {/* Column 1: Logos & About Programme */}
           <div className="flex flex-col">
-            
             {/* Government & Partner Logos */}
             <div className="flex items-center flex-wrap gap-5 mb-6">
-              <Link 
-                href="https://sws.invest.mp.gov.in/about-us/mpidc" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <Link
+                href="https://sws.invest.mp.gov.in/about-us/mpidc"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block no-underline bg-white rounded-md p-1.5"
               >
                 <img
@@ -42,10 +42,10 @@ export default function Footer() {
                 />
               </Link>
 
-              <Link 
-                href="https://sws.invest.mp.gov.in/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <Link
+                href="https://sws.invest.mp.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block no-underline bg-white rounded-md p-1.5"
               >
                 <img
@@ -59,10 +59,10 @@ export default function Footer() {
                 />
               </Link>
 
-              <Link 
-                href="https://www.incubationmasters.com/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <Link
+                href="https://www.incubationmasters.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block no-underline ml-2"
               >
                 <img
@@ -78,11 +78,12 @@ export default function Footer() {
             </div>
 
             <p className="text-white/80 leading-[1.8] text-[0.9rem] font-light mt-2">
-              The Madhya Pradesh FTA Accelerator is a programme of the Department of 
-              Industrial Policy and Investment Promotion Government of Madhya 
-              Pradesh, run by the Export Cell of the M.P. Industrial Development 
-              Corporation. Launched by the Hon'ble Chief Minister on 5 November 2026 
-              at the Madhya Pradesh Export and FTA Conclave 2026, Bhopal.
+              The Madhya Pradesh FTA Accelerator is a programme of the
+              Department of Industrial Policy and Investment Promotion
+              Government of Madhya Pradesh, run by the Export Cell of the M.P.
+              Industrial Development Corporation. Launched by the Hon'ble Chief
+              Minister on 5 November 2026 at the Madhya Pradesh Export and FTA
+              Conclave 2026, Bhopal.
             </p>
           </div>
 
@@ -93,12 +94,14 @@ export default function Footer() {
             </h5>
             <nav className="flex flex-col gap-4">
               {footerLinks.map((link, index) => (
-                <Link 
-                  key={index} 
+                <Link
+                  key={index}
                   href={link.path}
                   className="text-white/80 hover:text-white text-[0.95rem] font-light transition-colors no-underline flex items-center gap-3 group"
                 >
-                  <span className="text-white/60 group-hover:text-white text-[10px]">▸</span>
+                  <span className="text-white/60 group-hover:text-white text-[10px]">
+                    ▸
+                  </span>
                   {link.label}
                 </Link>
               ))}
@@ -111,20 +114,41 @@ export default function Footer() {
               HELPDESK CONTACT
             </h5>
             <div className="flex flex-col gap-6">
-              
               <div className="flex items-start gap-4 text-white/80">
-                <MapPin size={20} className="mt-1 text-white" strokeWidth={1.5} />
+                <MapPin
+                  size={20}
+                  className="mt-1 text-white"
+                  strokeWidth={1.5}
+                />
                 <p className="m-0 text-[0.95rem] font-light leading-relaxed">
-                  Export Cell, M.P. Industrial Development Corporation,<br />
+                  5th Floor, Export Cell, M.P. Industrial Development
+                  Corporation,
+                  <br />
                   21 Arera Hills, Bhopal 462011
                 </p>
               </div>
-              
-              <div className="flex items-center gap-4 text-white/80">
-                <Phone size={20} className="text-white" strokeWidth={1.5} />
-                <p className="m-0 text-[0.95rem] font-light">
-                  +91-755-257-7145
-                </p>
+
+              <div className="flex items-start gap-4 text-white/80">
+               
+                <div className="flex items-start gap-4 text-white/80">
+                  <Phone
+                    size={20}
+                    className="text-white mt-1"
+                    strokeWidth={1.5}
+                  />
+                  <div className="flex flex-col gap-1">
+                    <p className="m-0 text-[0.95rem] font-light">
+                      <span className="text-white font-medium">
+                        Tanmay Nigam:
+                      </span>{" "}
+                      +91 89898 99890
+                    </p>
+                    <p className="m-0 text-[0.95rem] font-light">
+                      <span className="text-white font-medium">Toll Free:</span>{" "}
+                      +91-755-257-7145
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div className="flex items-center gap-4 text-white/80">
@@ -133,19 +157,20 @@ export default function Footer() {
                   export.investment@mpidc.co.in
                 </p>
               </div>
-              
             </div>
           </div>
-
         </div>
-        
+
         {/* Bottom Copyright Area */}
-        <div className="pt-6 pb-2 flex flex-col md:flex-row justify-center items-center gap-4 text-center" style={{ borderTop: '1px solid rgba(255,255,255,0.2)' }}>
+        <div
+          className="pt-6 pb-2 flex flex-col md:flex-row justify-center items-center gap-4 text-center"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.2)" }}
+        >
           <p className="text-white/60 font-light text-[0.8rem] m-0">
-            © 2026 MP Industrial Development Corporation Ltd. All rights reserved.
+            © 2026 MP Industrial Development Corporation Ltd. All rights
+            reserved.
           </p>
         </div>
-        
       </div>
     </footer>
   );

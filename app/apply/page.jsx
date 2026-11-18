@@ -255,12 +255,12 @@ export default function ApplyPage() {
         dataToSubmit.append("documents", file);
       });
 
-   // Automatically check if running on local or production
+      // Automatically check if running on local or production
       const isProduction = process.env.NODE_ENV === "production";
-      
+
       // BASE_URL dono ke liye set kar diya jisme '/api' include hai
-      const BASE_URL = isProduction 
-        ? "https://mptradeportal.org/api" 
+      const BASE_URL = isProduction
+        ? "https://mptradeportal.org/api"
         : "http://localhost:5000/api";
 
       const EXPRESS_API_URL = `${BASE_URL}/fta/apply`;
@@ -330,8 +330,8 @@ export default function ApplyPage() {
                 Apply to the Accelerator
               </h1>
               <p className="text-gray-600 font-medium mx-auto m-0 text-[1.05rem] max-w-[700px] leading-[1.6]">
-                Fill the form below or bring it to the FTA/EXPORT HELPLINE at the MPIDC
-                Export Cell.
+                Fill the form below or bring it to the FTA/EXPORT HELPLINE at
+                the MPIDC Export Cell.
               </p>
             </ScrollReveal>
           </div>
@@ -1453,8 +1453,9 @@ export default function ApplyPage() {
                     <p className="text-gray-500 font-bold m-0 text-[0.9rem]">
                       Questions? Contact Helpdesk:
                     </p>
-                    <div className="flex justify-center gap-6 text-gray-900 font-medium text-[0.9rem]">
-                      <span>📞 +91-755-257-7145</span>
+                    <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-gray-900 font-medium text-[0.9rem]">
+                      <span>📞 Tanmay Nigam: +91 89898 99890</span>
+                      <span>📞 Telephone: +91-755-257-7145</span>
                       <span>✉️ export.investment@mpidc.co.in</span>
                     </div>
                     <button
